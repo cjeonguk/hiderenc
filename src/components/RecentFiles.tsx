@@ -11,18 +11,16 @@ export default function RecentFiles() {
   const listArray = [];
   for (let i = 0; i < 5; i++) {
     listArray.push(
-      <ListItem disablePadding key={i}>
+      <ListItem disablePadding key={`listitem${i}`}>
         <ListItemButton>
-          <ListItemText primary={i} />
+          <ListItemText primary={i} secondary={i * 2} />
         </ListItemButton>
       </ListItem>
     );
   }
   return (
     <div>
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <List className="list">{listArray}</List>
-      </Box>
+      <List className="list" disablePadding style={{ display: 'flex', flexDirection: 'row' }}>{listArray}</List>
     </div>
   );
 }

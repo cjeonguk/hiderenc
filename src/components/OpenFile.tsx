@@ -3,9 +3,9 @@ import { Button, Box } from '@mui/material';
 
 export default function OpenFile() {
   return (
-    <div>
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <Button variant="outlined" size="large">
+    <div id='open-file'>
+      <Box display="flex" justifyContent="center" alignItems="center" id='open-file-box'>
+        <Button variant="contained" size="large" id='open-file-btn'>
           Open
         </Button>
       </Box>
