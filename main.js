@@ -3,8 +3,8 @@ const path = require('path');
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    width: 600,
+    height: 360,
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -14,7 +14,7 @@ const createWindow = () => {
   mainWindow.loadFile('dist/index.html');
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {
