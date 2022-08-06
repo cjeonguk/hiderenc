@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-} from '@mui/material';
+import { List, ListItem, ListItemButton, ListItemText } from '@mui/material';
 
 export default function RecentFiles() {
   const listArray = [];
@@ -20,7 +14,13 @@ export default function RecentFiles() {
   }
   return (
     <div>
-      <List className="list" disablePadding style={{ display: 'flex', flexDirection: 'row' }}>{listArray}</List>
+      <List
+        className="list"
+        disablePadding
+        style={{ display: 'flex', flexDirection: 'row' }}
+      >
+        {listArray}
+      </List>
     </div>
   );
 }
