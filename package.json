@@ -9,6 +9,7 @@
     "@typescript-eslint/parser": "^5.32.0",
     "css-loader": "^6.7.1",
     "electron": "^20.0.1",
+    "electron-builder": "^23.3.3",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.30.1",
@@ -24,20 +25,37 @@
   "name": "hider",
   "version": "0.1.0",
   "description": "GUI tool to encrypt&decrypt files",
-  "main": "main.js",
+  "main": "app/main.js",
   "author": "Jeonguk Choi",
   "license": "MIT",
+  "repository": "https://github.com/cjeonguk/hider",
   "private": true,
   "scripts": {
-    "start": "tsc && webpack && electron ."
+    "start": "tsc && webpack && electron .",
+    "dist": "electron-builder -mwl",
+    "dist:linux": "electron-builder --linux --x64",
+    "dist:win": "electron-builder --win --x64",
+    "dist:mac": "electron-builder --mac --x64",
+    "dist:mac-arm64": "electron-builder --mac --arm64"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.9.3",
-    "@reduxjs/toolkit": "^1.8.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.0.2"
+    "react-dom": "^18.2.0"
+  },
+  "build": {
+    "appId": "com.electron.hider",
+    "productName": "Hider",
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "zip"
+    }
   }
 }

@@ -12,7 +12,7 @@ var encrypt = function (input, password) {
     return "".concat(iv.toString('hex'), ":").concat(salt.toString('hex'), ":").concat(cipher.update(input, 'utf8', 'hex') + cipher.final('hex'));
 };
 exports.encrypt = encrypt;
-var decrypt = function (input, password) {
+var decrypt = function (input, password, randomStr) {
     var texts = input.split(':');
     var iv = Buffer.from(texts[0], 'hex');
     var salt = Buffer.from(texts[1], 'hex');
@@ -23,8 +23,7 @@ var decrypt = function (input, password) {
         return decipher.update(text, 'hex', 'utf8') + decipher.final('utf8');
     }
     catch (err) {
-        console.log('ERROR: Password is incorrect.');
-        return '';
+        return randomStr;
     }
 };
 exports.decrypt = decrypt;
@@ -35,10 +34,11 @@ var encryptFile = function (filePath, password) {
 };
 exports.encryptFile = encryptFile;
 var decryptFile = function (filePath, password) {
+    var randomStr = (crypto.randomInt(256) * crypto.randomInt(256)).toString();
     var content = (0, fs_1.readFileSync)(filePath, { encoding: 'utf8' });
-    var decryptedContent = (0, exports.decrypt)(content, password);
-    if (decryptedContent !== '') {
-        (0, fs_1.writeFileSync)((0, path_1.basename)(filePath, '.enc'), decryptedContent);
+    var decryptedContent = (0, exports.decrypt)(content, password, randomStr);
+    if (decryptedContent !== randomStr) {
+        (0, fs_1.writeFileSync)((0, path_1.resolve)((0, path_1.dirname)(filePath), (0, path_1.basename)(filePath, (0, path_1.extname)(filePath))), decryptedContent);
         return true;
     }
     else

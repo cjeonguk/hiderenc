@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
-  mode: 'development',
+  mode: 'production',
   plugins: [
     new HtmlWebpackPlugin({
       template: './static/index.html',
@@ -12,7 +12,7 @@ module.exports = {
   ],
   output: {
     filename: 'renderer.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'app', 'dist'),
   },
   module: {
     rules: [

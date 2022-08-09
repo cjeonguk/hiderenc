@@ -13,14 +13,15 @@ body {
 }
 
 #open-file {
-  height: 60%;
+  height: 100%;
 }
 
 #open-file-box {
   height: 100%;
 }
 
-#open-file-btn {
+#open-file-btn1,
+#open-file-btn2 {
   background-color: darkgray;
 }
 

@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 import { readFileSync, writeFileSync } from 'fs';
-import { basename } from 'path';
+import { basename, dirname, resolve, extname } from 'path';
 
 export const encrypt = (input: string, password: string) => {
   const salt = crypto.randomBytes(16);
@@ -15,7 +15,11 @@ export const encrypt = (input: string, password: string) => {
   }`;
 };
 
-export const decrypt = (input: string, password: string) => {
+export const decrypt = (
+  input: string,
+  password: string,
+  randomStr: string
+): string => {
   const texts = input.split(':');
   const iv = Buffer.from(texts[0], 'hex');
   const salt = Buffer.from(texts[1], 'hex');
@@ -28,8 +32,7 @@ export const decrypt = (input: string, password: string) => {
   try {
     return decipher.update(text, 'hex', 'utf8') + decipher.final('utf8');
   } catch (err) {
-    console.log('ERROR: Password is incorrect.');
-    return '';
+    return randomStr;
   }
 };
 
@@ -40,10 +43,14 @@ export const encryptFile = (filePath: string, password: string) => {
 };
 
 export const decryptFile = (filePath: string, password: string) => {
+  const randomStr = (crypto.randomInt(256) * crypto.randomInt(256)).toString();
   const content = readFileSync(filePath, { encoding: 'utf8' });
-  const decryptedContent = decrypt(content, password);
-  if (decryptedContent !== '') {
-    writeFileSync(basename(filePath, '.enc'), decryptedContent);
+  const decryptedContent = decrypt(content, password, randomStr);
+  if (decryptedContent !== randomStr) {
+    writeFileSync(
+      resolve(dirname(filePath), basename(filePath, extname(filePath))),
+      decryptedContent
+    );
     return true;
   } else return false;
 };
