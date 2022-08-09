@@ -25,17 +25,17 @@ jobs:
       - run: yarn dist:mac-arm64
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
       - name: Create CHANGELOG.md
         id: set_changelog
         run: |
           echo -e "# ($(date +'%Y-%m-%d'))\n\n" > CHANGELOG.md
-          git log --format=%s v${{ github.ref }} | sed 's/\n/\n* /g' >> CHANGELOG.md
+          git log --format=%s ${{ steps.get_version.outputs.VERSION }} | sed 's/\n/\n* /g' >> CHANGELOG.md
           echo "::set-output name=changelog::$(cat CHANGELOG.md)"
-          
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
       - name: Create Release
         id: create_release
