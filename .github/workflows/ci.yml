@@ -29,7 +29,7 @@ jobs:
       - name: Create CHANGELOG.md
         id: set_changelog
         run: |
-          echo "# ${{ github.ref }} ($(date +'%Y-%m-%d'))\n\n" > CHANGELOG.md
+          echo "# ($(date +'%Y-%m-%d'))\n\n" > CHANGELOG.md
           git log --format=%s v${{ github.ref }} | sed 's/\n/\n* /g' >> CHANGELOG.md
           echo "::set-output name=changelog::$(cat CHANGELOG.md)"
           
