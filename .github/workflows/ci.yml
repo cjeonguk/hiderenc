@@ -46,10 +46,12 @@ jobs:
             sha: context.sha
           })
 
-    - name: Create changelog
+    - name: Create CHANGELOG.md
+      id: set_changelog
       run: |
         echo "# ${{fromJson(steps.set_var.outputs.packageJson).version}} ($(date +'%Y-%m-%d'))\n\n" > CHANGELOG.md
         git log --format=%s v${{fromJson(steps.set_var.outputs.packageJson).version}} | sed 's/\n/\n* /g' >> CHANGELOG.md
+        echo "::set-output name=changelog::$(cat CHANGELOG.md)"
         
     - name: Create Release
       id: create_release
