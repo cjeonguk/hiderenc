@@ -42,15 +42,15 @@ jobs:
           github.rest.git.createRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            ref: 'refs/tags/v${{fromJson(steps.set_var.outputs.packageJson).version}}',
+            ref: 'refs/tags/v${{ fromJson(steps.set_var.outputs.packageJson).version }}',
             sha: context.sha
           })
 
     - name: Create CHANGELOG.md
       id: set_changelog
       run: |
-        echo "# ${{fromJson(steps.set_var.outputs.packageJson).version}} ($(date +'%Y-%m-%d'))\n\n" > CHANGELOG.md
-        git log --format=%s v${{fromJson(steps.set_var.outputs.packageJson).version}} | sed 's/\n/\n* /g' >> CHANGELOG.md
+        echo "# ${{ fromJson(steps.set_var.outputs.packageJson).version }} ($(date +'%Y-%m-%d'))\n\n" > CHANGELOG.md
+        git log --format=%s v${{ fromJson(steps.set_var.outputs.packageJson).version }} | sed 's/\n/\n* /g' >> CHANGELOG.md
         echo "::set-output name=changelog::$(cat CHANGELOG.md)"
         
     - name: Create Release
@@ -59,8 +59,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{fromJson(steps.set_var.outputs.packageJson).version}}
-        release_name: Release ${{fromJson(steps.set_var.outputs.packageJson).version}}
+        tag_name: ${{ fromJson(steps.set_var.outputs.packageJson).version }}
+        release_name: Release ${{ fromJson(steps.set_var.outputs.packageJson).version }}
+        body: ${{ steps.set_changelog.outputs.changelog }}
         draft: false
         prerelease: false
         
@@ -70,8 +71,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: './dist/Hider Setup ${{fromJson(steps.set_var.outputs.packageJson)}}.exe'
-        asset_name: 'Hider Setup ${{fromJson(steps.set_var.outputs.packageJson)}}.exe'
+        asset_path: './dist/Hider Setup ${{ fromJson(steps.set_var.outputs.packageJson).version }}.exe'
+        asset_name: 'Hider Setup ${{ fromJson(steps.set_var.outputs.packageJson).version }}.exe'
         asset_content_type: application/exe
 
     - name: Upload Release Asset
@@ -80,8 +81,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: './dist/hider-${{fromJson(steps.set_var.outputs.packageJson)}}.zip'
-        asset_name: 'hider-${{fromJson(steps.set_var.outputs.packageJson)}}.zip'
+        asset_path: './dist/hider-${{ fromJson(steps.set_var.outputs.packageJson).version }}.zip'
+        asset_name: 'hider-${{ fromJson(steps.set_var.outputs.packageJson).version }}.zip'
         asset_content_type: application/zip
         
     - name: Upload Release Asset
@@ -90,8 +91,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: './dist/Hider-${{fromJson(steps.set_var.outputs.packageJson)}}.dmg'
-        asset_name: 'Hider-${{fromJson(steps.set_var.outputs.packageJson)}}.dmg'
+        asset_path: './dist/Hider-${{ fromJson(steps.set_var.outputs.packageJson).version }}.dmg'
+        asset_name: 'Hider-${{ fromJson(steps.set_var.outputs.packageJson).version }}.dmg'
         asset_content_type: application/dmg
         
     - name: Upload Release Asset
@@ -100,6 +101,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: './dist/Hider-${{fromJson(steps.set_var.outputs.packageJson)}}-arm64.dmg'
-        asset_name: 'Hider-${{fromJson(steps.set_var.outputs.packageJson)}}-arm64.dmg'
+        asset_path: './dist/Hider-${{ fromJson(steps.set_var.outputs.packageJson).version }}-arm64.dmg'
+        asset_name: 'Hider-${{ fromJson(steps.set_var.outputs.packageJson) }}-arm64.dmg'
         asset_content_type: application/dmg
