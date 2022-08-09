@@ -51,6 +51,11 @@
     "win": {
       "target": "nsis"
     },
+    "nsis": {
+      "license": "LICENSE",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    },
     "mac": {
       "target": "dmg"
     },
