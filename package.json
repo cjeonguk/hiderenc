@@ -48,6 +48,7 @@
   "build": {
     "appId": "com.electron.hider",
     "productName": "Hider",
+    "artifactName": "${name}-v${version}-{os}-{arch}.${ext}",
     "win": {
       "target": "nsis"
     },
