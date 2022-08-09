@@ -23,6 +23,8 @@ jobs:
     - run: yarn install --frozen-lockfile
     - run: yarn webpack
     - run: yarn dist
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: yarn dist:mac-arm64
     
     - id: set_var
