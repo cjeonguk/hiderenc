@@ -32,7 +32,7 @@
   "private": true,
   "scripts": {
     "start": "tsc && webpack && electron .",
-    "dist": "electron-builder -mwl",
+    "dist": "electron-builder -mwl --x64",
     "dist:linux": "electron-builder --linux --x64",
     "dist:win": "electron-builder --win --x64",
     "dist:mac": "electron-builder --mac --x64",
