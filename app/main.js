@@ -1,11 +1,10 @@
 const { app, BrowserWindow, ipcMain, dialog, Menu } = require('electron');
+const { autoUpdater } = require('electron-updater');
 const { encryptFile, decryptFile } = require('../modules/encrypt');
 const path = require('path');
 
-let mainWindow;
-
 const createWindow = () => {
-  mainWindow = new BrowserWindow({
+  const mainWindow = new BrowserWindow({
     width: 600,
     height: 360,
     minWidth: 600,
@@ -40,6 +39,8 @@ const createWindow = () => {
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate));
 
+  autoUpdater.checkForUpdates();
+
   mainWindow.loadFile(path.join(__dirname, 'dist', 'index.html'));
 
   // Open the DevTools.
@@ -58,20 +59,22 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
-ipcMain.on('is-mac', (event) => {
-  event.returnValue = process.platform === 'darwin';
+autoUpdater.on('update-available', () => {
+  const options = {
+    message: 'Available updates exist.',
+    title: 'Update',
+    type: 'question',
+    buttons: ['Quit the program and update', 'Not now'],
+    defaultId: 0,
+  };
+
+  dialog.showMessageBox(null, options).then((res) => {
+    if (res === 0) autoUpdater.downloadUpdate();
+  });
 });
 
-ipcMain.on('close', () => {
-  mainWindow.quit();
-});
-
-ipcMain.on('maximize', () => {
-  mainWindow.isMaximized() ? mainWindow.unmaximize() : mainWindow.maximize();
-});
-
-ipcMain.on('minimize', () => {
-  mainWindow.minimize();
+autoUpdater.on('update-downloaded', () => {
+  autoUpdater.quitAndInstall();
 });
 
 ipcMain.on('open-file', (event) => {

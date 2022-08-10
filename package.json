@@ -10,6 +10,7 @@
     "css-loader": "^6.7.1",
     "electron": "^20.0.1",
     "electron-builder": "^23.3.3",
+    "electron-updater": "^5.2.1",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.30.1",
@@ -23,7 +24,7 @@
     "webpack-cli": "^4.10.0"
   },
   "name": "hider",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "GUI tool to encrypt&decrypt files",
   "main": "app/main.js",
   "author": "Jeonguk Choi",
