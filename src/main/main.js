@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain, dialog, Menu } = require('electron');
 const { autoUpdater } = require('electron-updater');
-const { encryptFile, decryptFile } = require('../modules/encrypt');
+const { encryptFile, decryptFile } = require('./modules/encrypt');
 const path = require('path');
 
 const createWindow = () => {
@@ -16,6 +16,7 @@ const createWindow = () => {
   });
 
   const isMac = process.platform === 'darwin';
+  const isDev = process.env.NODE_ENV === 'development';
   const menuTemplate = [
     ...(isMac
       ? [
@@ -41,10 +42,13 @@ const createWindow = () => {
 
   autoUpdater.checkForUpdates();
 
-  mainWindow.loadFile(path.join(__dirname, 'dist', 'index.html'));
+  if (isDev) {
+    mainWindow.loadURL('http://localhost:3000');
+    console.log(process.env.NODE_ENV);
+  } else mainWindow.loadFile(path.join(__dirname, 'dist', 'index.html'));
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {
