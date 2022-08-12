@@ -33,8 +33,7 @@ jobs:
       - name: Create CHANGELOG.md
         id: set_changelog
         run: |
-          echo -e "# ($(date +'%Y-%m-%d'))\n\n" > CHANGELOG.md
-          git log --format=%s ${{ steps.get_version.outputs.VERSION }} | sed 's/\n/\n* /g' >> CHANGELOG.md
+          echo -e "# ${{ steps.get_version.outputs.VERSION }} ($(date +'%Y-%m-%d'))" > CHANGELOG.md
           echo "::set-output name=changelog::$(cat CHANGELOG.md)"
 
       - name: Create Release
