@@ -58,14 +58,20 @@
     },
     "nsis": {
       "license": "LICENSE",
+      "perMachine": true,
       "installerIcon": "build/icon.ico",
       "uninstallerIcon": "build/icon.ico"
     },
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+      "category": "public.app-category.utilities"
     },
     "linux": {
       "target": "zip"
+    },
+    "fileAssociations": {
+      "ext": "enc",
+      "name": "Encrypted file"
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   ButtonGroup,
@@ -16,7 +16,17 @@ export default function OpenFile() {
   const [passwd, setPasswd] = useState('');
   // Update this to state with redux
   const [encrypt, setEncrypt] = useState(true);
-  const [filePaths, setFilePaths] = useState([]);
+  const [filePaths, setFilePaths] = useState<string[]>([]);
+
+  useEffect(() => {
+    const opened: boolean = window.ipcRenderer.sendSync('file-opened');
+    if (opened) {
+      const filePath: string = window.ipcRenderer.sendSync('get-file-path');
+      setFilePaths([filePath]);
+      setEncrypt(false);
+      handleClickOpen();
+    }
+  }, []);
 
   function handleClickOpen() {
     setOpenDialog(true);

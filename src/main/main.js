@@ -3,6 +3,8 @@ const { autoUpdater } = require('electron-updater');
 const { encryptFile, decryptFile } = require('./modules/encrypt');
 const path = require('path');
 
+const isDev = process.env.NODE_ENV === 'development';
+
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 600,
@@ -16,7 +18,6 @@ const createWindow = () => {
   });
 
   const isMac = process.platform === 'darwin';
-  const isDev = process.env.NODE_ENV === 'development';
   const menuTemplate = [
     ...(isMac
       ? [
@@ -86,6 +87,16 @@ ipcMain.on('open-file', (event) => {
     defaultPath: require('os').homedir(),
   });
   event.returnValue = selectedFiles;
+});
+
+ipcMain.on('file-opened', (event) => {
+  if (process.argv.length >= 2 && !isDev) {
+    event.returnValue = true;
+  } else event.returnValue = false;
+});
+
+ipcMain.on('get-file-path', (event) => {
+  event.returnValue = process.argv[1];
 });
 
 ipcMain.on('encrypt-or-decrypt', (event, passwd, encrypt, filePaths) => {
