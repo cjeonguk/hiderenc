@@ -1,3 +1,5 @@
+#!/bin/bash
+
 content="$(git log --format=%s $(git describe --tags --always --abbrev=0)..HEAD)"
 if [[ -z $content ]]
 then

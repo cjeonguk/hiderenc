@@ -17,4 +17,5 @@ jobs:
           cache: 'yarn'
 
       - name: Run shell command
-        run: bash ./.github/scripts/ci.sh
+        run: ./.github/scripts/ci.sh
+        shell: bash
