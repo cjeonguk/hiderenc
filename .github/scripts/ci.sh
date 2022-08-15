@@ -15,6 +15,7 @@ else
   changelog="${changelog:2}"
   sed -i'' -e "s/^/$changelog/" CHANGELOG.md
   git add CHANGELOG.md
+  git commit -m "chore: Write changelog"
 
   version="$(node -e "console.log(require('./package.json').version);")"
   if [[ $content == *"feat("*"):"* ]]
