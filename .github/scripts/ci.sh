@@ -1,6 +1,7 @@
 #!/bin/bash
 
 content="$(git log --format=%s $(git describe --tags --always --abbrev=0)..HEAD)"
+echo $content
 if [[ -z $content ]]
 then
   echo "Nothing changed"
