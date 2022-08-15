@@ -25,7 +25,6 @@ else
       yarn version --patch
     fi
   else
-    git add package.json
     git commit -m "chore: Publish v$version"
     git tag -a v$version -m "v$version"
   fi
