@@ -15,8 +15,9 @@ else
   # version="${version:1}"
   # echo $version
 
-  changelog="# $(date +'%Y-%m-%d')\n\n$(echo $(git log --oneline --decorate) | sed 's/\n/\n* /g')\n\n"
-  echo $changelog | cat - CHANGELOG.md > temp && mv temp CHANGELOG.md
+  changelog="$(echo -e "# $(date +'%Y-%m-%d')\n$content" | sed -e "s/^/\* /")"
+  changelog="${changelog:3}"
+  echo -e $changelog | cat - CHANGELOG.md > temp && mv temp CHANGELOG.md
   git add CHANGELOG.md
 
   version="$(node -e "console.log(require('./package.json').version);")"

@@ -21,3 +21,5 @@ jobs:
       - name: Run shell command
         run: ./.github/scripts/ci.sh
         shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
