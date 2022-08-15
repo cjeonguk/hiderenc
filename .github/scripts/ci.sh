@@ -13,7 +13,7 @@ else
 
   changelog="$(echo -e "# $(date +'%Y-%m-%d')\n$(git log --oneline --decorate)" | sed -e "s/^/\* /")"
   changelog="${changelog:2}"
-  echo -e "$changelog\n$(cat CHANGELOG.md)" CHANGELOG.md
+  echo -e "$changelog\n$(cat CHANGELOG.md)" > CHANGELOG.md
   git add CHANGELOG.md
   git commit -m "chore: Write changelog"
 
