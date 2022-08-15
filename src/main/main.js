@@ -45,11 +45,9 @@ const createWindow = () => {
 
   if (isDev) {
     mainWindow.loadURL('http://localhost:3000');
+    mainWindow.webContents.openDevTools();
     console.log(process.env.NODE_ENV);
   } else mainWindow.loadFile(path.join(__dirname, 'dist', 'index.html'));
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {

@@ -25,17 +25,19 @@
     "webpack-dev-server": "^4.10.0"
   },
   "name": "hider",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "GUI tool to encrypt&decrypt files",
-  "main": "src/main/main.js",
+  "main": "app/main.js",
   "author": "Jeonguk Choi",
   "license": "MIT",
   "repository": "https://github.com/cjeonguk/hider",
+  "homepage": "https://github.com/cjeonguk/hider#readme",
   "private": true,
   "scripts": {
-    "start:main": "NODE_ENV=development electron .",
+    "start:main": "NODE_ENV=development electron src/main/main.js",
     "start:renderer": "webpack serve",
-    "build": "cp -r ./src/main/* ./app && tsc && webpack",
+    "test": "echo \"No tests available\"",
+    "build": "cp -r ./src/main/* ./app && tsc && webpack --mode=production",
     "dist": "electron-builder -mwl --x64",
     "dist:linux": "electron-builder --linux --x64",
     "dist:win": "electron-builder --win --x64",
@@ -59,6 +61,7 @@
     "nsis": {
       "license": "LICENSE",
       "perMachine": true,
+      "oneClick": true,
       "installerIcon": "build/icon.ico",
       "uninstallerIcon": "build/icon.ico"
     },
