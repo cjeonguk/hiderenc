@@ -11,9 +11,9 @@ else
   git config user.name "github-actions[bot]"
   git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
-  changelog="$(echo -e "# $(date +'%Y-%m-%d')\n$(git log --oneline --decorate)" | sed -e "s/^/\* /")"
+  changelog="$(echo -e "# $(date +'%Y-%m-%d')\n\n$(git log --oneline --decorate $(git describe --tags --abbrev=0)..HEAD | sed -e "s/^/\* /")")"
   changelog="${changelog:2}"
-  echo -e "$changelog\n$(cat CHANGELOG.md)" > CHANGELOG.md
+  echo -e "$changelog\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
   git add CHANGELOG.md
   git commit -m "chore: Write changelog"
 
