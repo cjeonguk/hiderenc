@@ -13,7 +13,7 @@ else
   # version="${version:1}"
   # echo $version
 
-  changelog="# $(date +'%Y-%m-%d')\n\n$(echo $content | sed 's/\n/\n* /g')\n\n"
+  changelog="# $(date +'%Y-%m-%d')\n\n$(echo $(git log --oneline --decorate) | sed 's/\n/\n* /g')\n\n"
   sed -i "1s/^/$changelog/" CHANGELOG.md
   git add CHANGELOG.md
 
