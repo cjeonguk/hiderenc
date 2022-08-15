@@ -12,7 +12,7 @@ else
   git config user.name "github-actions[bot]"
   git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
-  changelog="$(echo -e "# $(date +'%Y-%m-%d')\n$content" | sed -e "s/^/\* /")"
+  changelog="$(echo -e "# $(date +'%Y-%m-%d')\n$(git log --oneline --decorate)" | sed -e "s/^/\* /")"
   changelog="${changelog:3}"
   echo -e $changelog | cat - CHANGELOG.md > temp && mv temp CHANGELOG.md
   git add CHANGELOG.md
@@ -25,6 +25,8 @@ else
     yarn version --patch
   fi
   git push && git push --tags
+
+  version="$(node -e "console.log(require('./package.json').version);")"
 
   mkdir app
   yarn build
