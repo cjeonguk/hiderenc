@@ -77,7 +77,7 @@ export default function OpenFile() {
           </Button>
         </ButtonGroup>
       </Box>
-      <Dialog open={openDialog} onClose={handleClose}>
+      <Dialog open={openDialog} onClose={handleClose} fullScreen>
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText>Enter your password:</DialogContentText>
