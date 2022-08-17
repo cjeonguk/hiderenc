@@ -1,24 +1,24 @@
 # v1.0.4-0 (2022-08-17)
 
-* 82c81c9 (HEAD -> main, origin/main) style(ci): change `prerelease.yml` name
-* fe3e9eb fix(autoUpdater): fix auto updater
-* 6f615c9 chore(ci): Modify `ci.sh` and add `prerelease.sh`
-* 1b2a252 style: Update changelog
-* 8cc48eb chore: Update ci.sh about changelog
+- 82c81c9 (HEAD -> main, origin/main) style(ci): change `prerelease.yml` name
+- fe3e9eb fix(autoUpdater): fix auto updater
+- 6f615c9 chore(ci): Modify `ci.sh` and add `prerelease.sh`
+- 1b2a252 style: Update changelog
+- 8cc48eb chore: Update ci.sh about changelog
 
-# 2022-08-16
+# v1.0.3 (2022-08-16)
 
-* 85fd68f (HEAD -> main, origin/main) fix(encrypt): Fix .odt encoding problem
-* 147608d chore: Update ci.sh about changelog
+- 85fd68f (HEAD -> main, origin/main) fix(encrypt): Fix .odt encoding problem
+- 147608d chore: Update ci.sh about changelog
 
-# 2022-08-15
+# v1.0.2 (2022-08-15)
 
 - 9b55525 (HEAD -> main, origin/main) fix(package.json): Change Dependencies
 - 9fb29c2 style: Add CI badge to README
 - 41777a2 (tag: v1.0.1) chore: Publish v1.0.1
 - 71a88a3 chore: Write changelog
 
-# 2022-08-15
+# v1.0.1 (2022-08-15)
 
 - 3be5611 (HEAD -> main, origin/main) chore: fix typo of ci.sh
 - 46a4259 chore: Publish v1.0.1
