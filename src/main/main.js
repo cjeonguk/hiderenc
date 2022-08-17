@@ -41,8 +41,6 @@ const createWindow = () => {
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate));
 
-  autoUpdater.checkForUpdates();
-
   if (isDev) {
     mainWindow.loadURL('http://localhost:3000');
     mainWindow.webContents.openDevTools();
@@ -52,6 +50,8 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
   createWindow();
+
+  autoUpdater.checkForUpdatesAndNotify();
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
