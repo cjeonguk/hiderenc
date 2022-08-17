@@ -1,3 +1,11 @@
+# v1.0.4-0 (2022-08-17)
+
+* 82c81c9 (HEAD -> main, origin/main) style(ci): change `prerelease.yml` name
+* fe3e9eb fix(autoUpdater): fix auto updater
+* 6f615c9 chore(ci): Modify `ci.sh` and add `prerelease.sh`
+* 1b2a252 style: Update changelog
+* 8cc48eb chore: Update ci.sh about changelog
+
 # 2022-08-16
 
 * 85fd68f (HEAD -> main, origin/main) fix(encrypt): Fix .odt encoding problem
