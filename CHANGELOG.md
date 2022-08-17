@@ -1,3 +1,10 @@
+# v1.1.0-0 (2022-08-17)
+
+* 36ab094 (HEAD -> main, origin/main) feat(UI): Change passwd dialog to fullscreen
+* e3202d6 chore(ci): Make pre-release type prerelease
+* 4d1f30c style(CHANGELOG): Format changelog style
+* d15bc2d style(ci): Change release note style
+
 # v1.0.4-0 (2022-08-17)
 
 - 82c81c9 (HEAD -> main, origin/main) style(ci): change `prerelease.yml` name
