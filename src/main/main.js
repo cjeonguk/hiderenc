@@ -80,6 +80,10 @@ autoUpdater.on('update-downloaded', () => {
   autoUpdater.quitAndInstall();
 });
 
+autoUpdater.on('error', (err) => {
+  dialog.showErrorBox('Error', err);
+});
+
 ipcMain.on('open-file', (event) => {
   const selectedFiles = dialog.showOpenDialogSync(null, {
     defaultPath: require('os').homedir(),
