@@ -12,12 +12,11 @@ else
   git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
   changelog="$(echo -e "($(date +'%Y-%m-%d'))\n\n$(git log --oneline --decorate $(git describe --tags --abbrev=0)..HEAD | sed -e "s/^/\* /")")"
-
   if [[ $content == *"feat("*"):"* ]]
   then
-    yarn version --minor --no-git-tag-version
+    yarn version --preminor --no-git-tag-version
   else
-    yarn version --patch --no-git-tag-version
+    yarn version --prepatch --no-git-tag-version
   fi
   version="$(node -e "console.log(require('./package.json').version);")"
 
