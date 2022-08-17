@@ -31,5 +31,5 @@ else
   yarn dist
   yarn dist:mac-arm64
 
-  gh release create v$version --notes "# v$version $changelog" "dist/hider-v$version-win-x64.exe" "dist/hider-v$version-linux-x64.zip" "dist/hider-v$version-mac-x64.dmg" "dist/hider-v$version-mac-arm64.dmg"
+  gh release create v$version --prerelease --notes "# v$version $changelog" "dist/hider-v$version-win-x64.exe" "dist/hider-v$version-linux-x64.zip" "dist/hider-v$version-mac-x64.dmg" "dist/hider-v$version-mac-arm64.dmg"
 fi
