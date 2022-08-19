@@ -17,7 +17,7 @@
 #   - docs    : changes to documentation
 #   - test    : adding or refactoring tests
 #               no production code change
-#   - chore   : updating grunt tasks etc
+#   - chore   : Adding or modifying build/release or other processes
 #               no production code change
 # ------------------
 #   - Capitalize the subject line
