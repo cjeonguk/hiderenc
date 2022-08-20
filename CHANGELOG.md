@@ -1,5 +1,3 @@
-
-
 # 1.1.0-0 (2022-08-17)
 
 - 36ab094 (HEAD -> main, origin/main) feat(UI): Change passwd dialog to fullscreen
