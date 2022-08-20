@@ -1,3 +1,31 @@
+# 1.2.0-0 (2022-08-20)
+
+### Miscellaneous Tasks
+
+- chore: Add .gitmessage.txt (3538298)
+
+- chore: Modify .gitmessage.txt (9fc3aaa)
+
+- chore(ci): Change CHANGELOG.md format (7ba09f0)
+
+- chore: Publish v (e8b69ad)
+
+- Revert "chore: Publish v" (4b73ccc)
+
+- chore(ci): Fix using `generate-changelog.sh` (2db6ab7)
+
+### Refactor
+
+- (main): Migrate JavaScript to TypeScript (5de4169)
+
+- (renderer): Code splitting for webpack (d4641aa)
+
+### Bug Fixes
+
+- (autoUpdater): Add ErrorBox to display error (7f22dca)
+
+
+
 # 1.1.0-0 (2022-08-17)
 
 - 36ab094 (HEAD -> main, origin/main) feat(UI): Change passwd dialog to fullscreen
