@@ -12,7 +12,7 @@ else
 
   yarn version --preminor --no-git-tag-version
 
-  source ./generate-changelog.sh
+  source ./.github/scripts/generate-changelog.sh
 
   echo -e "$changelog\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
   git add CHANGELOG.md package.json
