@@ -6,5 +6,8 @@
       "syntax": "typescript",
       "tsx": true
     }
+  },
+  "module": {
+    "type": "commonjs"
   }
 }

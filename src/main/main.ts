@@ -1,12 +1,13 @@
-const { app, BrowserWindow, ipcMain, dialog, Menu } = require('electron');
-const { autoUpdater } = require('electron-updater');
-const { encryptFile, decryptFile } = require('./modules/encrypt');
-const path = require('path');
+import { app, BrowserWindow, ipcMain, dialog, Menu } from 'electron';
+import { autoUpdater } from 'electron-updater';
+import { encryptFile, decryptFile } from './modules/encrypt';
+import path from 'path';
 
 const isDev = process.env.NODE_ENV === 'development';
 
+let mainWindow: BrowserWindow;
 const createWindow = () => {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 600,
     height: 360,
     minWidth: 600,
@@ -18,34 +19,32 @@ const createWindow = () => {
   });
 
   const isMac = process.platform === 'darwin';
-  const menuTemplate = [
-    ...(isMac
-      ? [
-          {
-            label: app.name,
-            submenu: [
-              { role: 'about' },
-              { type: 'separator' },
-              { role: 'services' },
-              { type: 'separator' },
-              { role: 'hide' },
-              { role: 'hideOthers' },
-              { role: 'unhide' },
-              { type: 'separator' },
-              { role: 'quit' },
-            ],
-          },
-        ]
-      : []),
-  ];
-
-  Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate));
+  if (isMac) {
+    const menuTemplate: Electron.MenuItemConstructorOptions[] = [
+      {
+        label: app.name,
+        submenu: [
+          { role: 'about' },
+          { type: 'separator' },
+          { role: 'services' },
+          { type: 'separator' },
+          { role: 'hide' },
+          { role: 'hideOthers' },
+          { role: 'unhide' },
+          { type: 'separator' },
+          { role: 'quit' },
+        ],
+      },
+    ];
+    Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate));
+  }
 
   if (isDev) {
     mainWindow.loadURL('http://localhost:3000');
     mainWindow.webContents.openDevTools();
     console.log(process.env.NODE_ENV);
-  } else mainWindow.loadFile(path.join(__dirname, 'dist', 'index.html'));
+  } else
+    mainWindow.loadFile(path.join(__dirname, '..', 'renderer', 'index.html'));
 };
 
 app.whenReady().then(() => {
@@ -67,13 +66,12 @@ autoUpdater.on('update-available', () => {
     message: 'Available updates exist.',
     title: 'Update',
     type: 'question',
-    buttons: ['Quit the program and update', 'Not now'],
-    defaultId: 0,
+    buttons: ['Not now', 'Quit the program and update'],
+    defaultId: 1,
   };
 
-  dialog.showMessageBox(null, options).then((res) => {
-    if (res === 0) autoUpdater.downloadUpdate();
-  });
+  const res = dialog.showMessageBoxSync(mainWindow, options);
+  if (res) autoUpdater.downloadUpdate();
 });
 
 autoUpdater.on('update-downloaded', () => {
@@ -81,11 +79,11 @@ autoUpdater.on('update-downloaded', () => {
 });
 
 autoUpdater.on('error', (err) => {
-  dialog.showErrorBox('Error', err);
+  dialog.showErrorBox('Error', err.toString());
 });
 
 ipcMain.on('open-file', (event) => {
-  const selectedFiles = dialog.showOpenDialogSync(null, {
+  const selectedFiles = dialog.showOpenDialogSync(mainWindow, {
     defaultPath: require('os').homedir(),
   });
   event.returnValue = selectedFiles;
@@ -111,7 +109,7 @@ ipcMain.on('encrypt-or-decrypt', (event, passwd, encrypt, filePaths) => {
       title: 'Information',
       message: 'Encryption succeed.',
     };
-    dialog.showMessageBox(null, options);
+    dialog.showMessageBox(mainWindow, options);
   } else {
     let success = true;
     for (let i = 0; i < filePaths.length; i++) {
@@ -123,7 +121,7 @@ ipcMain.on('encrypt-or-decrypt', (event, passwd, encrypt, filePaths) => {
         title: 'Information',
         message: 'Decryption succeed.',
       };
-      dialog.showMessageBox(null, options);
+      dialog.showMessageBox(mainWindow, options);
     } else
       dialog.showErrorBox(
         'ERROR',

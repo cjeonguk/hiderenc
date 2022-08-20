@@ -16,7 +16,7 @@ module.exports = {
   ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'app', 'dist'),
+    path: path.resolve(__dirname, 'out', 'renderer'),
   },
   module: {
     rules: [
@@ -30,7 +30,14 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        use: 'swc-loader',
+        use: {
+          loader: 'swc-loader',
+          options: {
+            module: {
+              type: 'es6',
+            },
+          },
+        },
         exclude: /node_modules/,
       },
     ],
