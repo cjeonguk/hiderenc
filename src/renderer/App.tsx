@@ -1,5 +1,5 @@
 import React from 'react';
-import OpenFile from './components/OpenFile';
+const OpenFile = React.lazy(() => import('./components/OpenFile'));
 
 export default function App() {
   return (

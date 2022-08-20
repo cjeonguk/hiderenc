@@ -15,7 +15,7 @@ module.exports = {
     }),
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'out', 'renderer'),
   },
   module: {
@@ -35,6 +35,7 @@ module.exports = {
           options: {
             module: {
               type: 'es6',
+              ignoreDynamic: true,
             },
           },
         },
@@ -48,5 +49,23 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     port: 3000,
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor1: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'vendor1',
+          chunks: 'all',
+          priority: 3,
+        },
+        vendor2: {
+          test: /[\\/]node_modules[\\/]@mui[\\/]material[\\/]/,
+          name: 'vendor2',
+          chunks: 'all',
+          priority: 2,
+        },
+      },
+    },
   },
 };

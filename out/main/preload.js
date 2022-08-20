@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:true});var _electron=require("electron");_electron.contextBridge.exposeInMainWorld("ipcRenderer",_electron.ipcRenderer)
