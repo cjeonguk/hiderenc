@@ -1,3 +1,11 @@
+# 1.2.1-0 (2022-08-20)
+
+### Miscellaneous Tasks
+
+- chore: Change release notes (707dcef)
+
+
+
 # 1.2.0-0 (2022-08-20)
 
 ### Miscellaneous Tasks
