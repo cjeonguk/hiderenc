@@ -1,3 +1,41 @@
+# 1.2.3 (2022-08-21)
+
+### Miscellaneous Tasks
+
+- chore(nsis): Set oneClick to false **(89c02fb)**
+
+- chore(dependencies): Add dependabot.yml **(f821788)**
+
+- chore(deps-dev): bump @typescript-eslint/parser from 5.33.0 to 5.33.1 **(c0a78b0)**
+
+- chore(deps-dev): bump @swc/core from 1.2.232 to 1.2.241 **(61a9df1)**
+
+- chore(deps-dev): bump @typescript-eslint/parser from 5.33.0 to 5.33.1 (#1) **(65e1a6e)**
+
+- chore(deps-dev): bump @swc/core from 1.2.232 to 1.2.241 (#2) **(b1afa8a)**
+
+- chore(deps-dev): bump @typescript-eslint/eslint-plugin **(7754a49)**
+
+- Merge pull request #3 from cjeonguk/dependabot/npm_and_yarn/typescript-eslint/eslint-plugin-5.33.1 **(2f55539)**
+
+- chore(deps-dev): bump @types/node from 18.7.3 to 18.7.8 **(635c6b7)**
+
+- chore(deps): bump @mui/material from 5.10.0 to 5.10.1 (#5) **(838c1eb)**
+
+- chore(ci): Changelog style change **(5296d9a)**
+
+- chore(deps): Change dependency versions **(e5ed649)**
+
+- chore(ci): Add symantic-pr.yml **(d569408)**
+
+- chore(ci): Add labeler for pr and issue **(aebac1b)**
+
+### Features
+
+- (main): Add icon in code **(b4b6c22)**
+
+
+
 # 1.2.2 (2022-08-21)
 
 ### Bug Fixes
