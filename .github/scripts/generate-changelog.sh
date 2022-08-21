@@ -1,6 +1,6 @@
 #!/bin/bash
 
-log="$(git log --format="%s (%h)" $(git describe --tags --abbrev=0)..HEAD)"
+log="$(git log --format="%s **(%h)**" $(git describe --tags --abbrev=0)..HEAD)"
 version="$(node -e "console.log(require('./package.json').version);")"
 
 title="# $version ($(date +'%Y-%m-%d'))\n\n"
@@ -8,7 +8,7 @@ changelog="$title"
 
 while read -r line
 do
-  if [[ $line == "feat"* ]]; then # Problem: cannot read $changelog in if statement
+  if [[ $line == "feat"* ]]; then
     message=${line:4}
     if [[ $changelog != *"### Features"* ]]; then
       changelog="$changelog### Features\n\n"
