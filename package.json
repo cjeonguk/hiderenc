@@ -64,6 +64,7 @@
       "license": "LICENSE",
       "perMachine": true,
       "oneClick": false,
+      "runAfterFinish": false,
       "installerIcon": "build/icon.ico",
       "uninstallerIcon": "build/icon.ico"
     },
