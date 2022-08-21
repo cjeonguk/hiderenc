@@ -1,7 +1,7 @@
 #!/bin/bash
 
 content="$(git log --format=%s $(git describe --tags --always --abbrev=0)..HEAD)"
-is-prerelease="$(node ./.github/scripts/check-prerelease.js `gh release view`)"
+is-prerelease="$(node ./.github/scripts/check-prerelease.js `gh api -H "Accept: application/vnd.github+json" /repos/cjeonguk/hider/releases/latest`)"
 if [[ -z $content ]] || [[ is-prerelease == "false" ]]; then
   echo "Nothing changed"
 else
