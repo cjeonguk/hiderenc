@@ -72,7 +72,8 @@
       "category": "public.app-category.utilities"
     },
     "linux": {
-      "target": "zip"
+      "target": "zip",
+      "icon": "build/64x64.png"
     },
     "fileAssociations": {
       "ext": "enc",

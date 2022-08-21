@@ -13,8 +13,10 @@ const createWindow = () => {
     minWidth: 600,
     minHeight: 360,
     autoHideMenuBar: true,
+    icon: path.join(__dirname, '..', '..', 'build', '64x64.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      devTools: isDev,
     },
   });
 
