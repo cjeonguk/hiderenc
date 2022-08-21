@@ -1,3 +1,11 @@
+# 1.2.2 (2022-08-21)
+
+### Bug Fixes
+
+- (autoUpdater): Remove unnecessity codes (0fee6da)
+
+
+
 # 1.2.1 (2022-08-21)
 
 ### Miscellaneous Tasks
