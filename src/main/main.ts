@@ -61,26 +61,26 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
-autoUpdater.on('update-available', () => {
-  const options = {
-    message: 'Available updates exist.',
-    title: 'Update',
-    type: 'question',
-    buttons: ['Not now', 'Quit the program and update'],
-    defaultId: 1,
-  };
+// autoUpdater.on('update-available', () => {
+//   const options = {
+//     message: 'Available updates exist.',
+//     title: 'Update',
+//     type: 'question',
+//     buttons: ['Not now', 'Quit the program and update'],
+//     defaultId: 1,
+//   };
 
-  const res = dialog.showMessageBoxSync(mainWindow, options);
-  if (res) autoUpdater.downloadUpdate();
-});
+//   const res = dialog.showMessageBoxSync(mainWindow, options);
+//   if (res) autoUpdater.downloadUpdate();
+// });
 
-autoUpdater.on('update-downloaded', () => {
-  autoUpdater.quitAndInstall();
-});
+// autoUpdater.on('update-downloaded', () => {
+//   autoUpdater.quitAndInstall();
+// });
 
-autoUpdater.on('error', (err) => {
-  dialog.showErrorBox('Error', err.toString());
-});
+// autoUpdater.on('error', (err) => {
+//   dialog.showErrorBox('Error', err.toString());
+// });
 
 ipcMain.on('open-file', (event) => {
   const selectedFiles = dialog.showOpenDialogSync(mainWindow, {
