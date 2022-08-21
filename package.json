@@ -63,7 +63,7 @@
     "nsis": {
       "license": "LICENSE",
       "perMachine": true,
-      "oneClick": true,
+      "oneClick": false,
       "installerIcon": "build/icon.ico",
       "uninstallerIcon": "build/icon.ico"
     },
