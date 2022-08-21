@@ -1,3 +1,15 @@
+# 1.2.5 (2022-08-21)
+
+### Miscellaneous Tasks
+
+- chore(workflows): Add stale.yml **(74f937d)**
+
+- chore(ci): Remove prerelease **(60cfdc9)**
+
+- chore(ci): Add latest.yml to release **(e86762c)**
+
+
+
 # 1.2.4 (2022-08-21)
 
 ### Bug Fixes
