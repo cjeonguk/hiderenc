@@ -1,0 +1,15 @@
+main:
+  - src/main/**/*
+
+renderer:
+  - src/renderer/**/*
+
+components:
+  - src/renderer/components/**/*
+
+static:
+  - static/**/*
+
+test:
+  - src/**/*.test.ts
+  - src/**/*.test.tsx

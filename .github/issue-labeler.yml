@@ -1,0 +1,26 @@
+critical:
+  - '(critical|urgent)'
+
+windows:
+  - windows
+
+macos:
+  - mac
+  - macos
+
+linux:
+  - linux
+  - ubuntu
+  - fedora
+
+bug:
+  - bug
+
+documentation:
+  - docs
+  - document
+  - documentation
+  - readme
+
+security:
+  - security
