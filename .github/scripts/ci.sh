@@ -1,7 +1,8 @@
 #!/bin/bash
 
 content="$(git log --format=%s $(git describe --tags --always --abbrev=0)..HEAD)"
-if [[ -z $content ]]; then
+is-prerelease="$(node ./.github/scripts/check-prerelease.js `gh release view`)"
+if [[ -z $content ]] || [[ is-prerelease == "false" ]]; then
   echo "Nothing changed"
 else
   yarn install --frozen-lockfile
