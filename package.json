@@ -41,7 +41,8 @@
     "dist:linux": "electron-builder --linux --x64",
     "dist:win": "electron-builder --win --x64",
     "dist:mac": "electron-builder --mac --x64",
-    "dist:mac-arm64": "electron-builder --mac --arm64"
+    "dist:mac:arm64": "electron-builder --mac --arm64",
+    "dist:mac:both": "electron-builder --mac --x64 --arm64"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
