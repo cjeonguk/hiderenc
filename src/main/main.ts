@@ -76,7 +76,14 @@ autoUpdater.on('update-available', () => {
   if (res) autoUpdater.downloadUpdate();
 });
 
+let progressInterval: number;
+
+autoUpdater.on('download-progress', (progressObj) => {
+  mainWindow.setProgressBar(progressObj.percent / 100);
+});
+
 autoUpdater.on('update-downloaded', () => {
+  mainWindow.setProgressBar(-1);
   autoUpdater.quitAndInstall();
 });
 
