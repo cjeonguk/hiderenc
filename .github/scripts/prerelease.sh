@@ -10,7 +10,7 @@ else
   git config user.name "github-actions[bot]"
   git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
-  yarn version --prepatch --no-git-tag-version
+  yarn version --prerelease --no-git-tag-version
 
   source ./.github/scripts/generate-changelog.sh
 
