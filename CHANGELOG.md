@@ -1,3 +1,11 @@
+# 1.2.4 (2022-08-21)
+
+### Bug Fixes
+
+- (autoUpdater): Change to checkForUpdates **(b975985)**
+
+
+
 # 1.2.3 (2022-08-21)
 
 ### Miscellaneous Tasks
