@@ -1,3 +1,15 @@
+# 1.2.1 (2022-08-21)
+
+### Miscellaneous Tasks
+
+- chore(ci): Change prerelease (59c074a)
+
+- chore(ci): Change how to detect prerelease (a9f384b)
+
+- chore(ci): Change release-minor name (36c8b85)
+
+
+
 # 1.2.1-0 (2022-08-20)
 
 ### Miscellaneous Tasks
