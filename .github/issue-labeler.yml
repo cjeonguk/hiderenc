@@ -2,16 +2,16 @@ critical:
   - '(critical|urgent)'
 
 windows:
-  - windows
+  - '(windows|Windows)'
 
 macos:
-  - mac
-  - macos
+  - '(mac|Mac)'
+  - '(macos|MacOS|macOS)'
 
 linux:
-  - linux
-  - ubuntu
-  - fedora
+  - '(linux|Linux)'
+  - '(ubuntu|Ubuntu)'
+  - '(fedora|Fedora)'
 
 bug:
   - bug
@@ -20,7 +20,7 @@ documentation:
   - docs
   - document
   - documentation
-  - readme
+  - '(readme|README)'
 
 security:
   - security
