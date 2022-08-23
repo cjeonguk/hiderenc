@@ -3,7 +3,7 @@
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@swc/cli": "^0.1.57",
-    "@swc/core": "^1.2.241",
+    "@swc/core": "^1.2.242",
     "@types/crypto-js": "^4.1.1",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
