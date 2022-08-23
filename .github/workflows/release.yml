@@ -19,6 +19,8 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+      - name: Bundle renderer process
+        run: yarn build
       - name: Build
         run: |
           yarn dist:win
