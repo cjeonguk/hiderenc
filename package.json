@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.241",
     "@types/crypto-js": "^4.1.1",
@@ -15,6 +17,7 @@
     "eslint-plugin-react": "^7.30.1",
     "html-webpack-plugin": "^5.5.0",
     "prettier": "2.7.1",
+    "semantic-release": "^19.0.4",
     "style-loader": "^3.3.1",
     "swc-loader": "^0.2.3",
     "ts-loader": "^9.3.1",
@@ -37,12 +40,12 @@
     "start:renderer": "tsc -p ./src/renderer && webpack serve",
     "test": "echo \"No tests available\"",
     "build": "tsc -p ./src/main && tsc -p ./src/renderer && swc ./src/main -d out && webpack --mode=production",
-    "dist": "electron-builder -mwl --x64",
-    "dist:linux": "electron-builder --linux --x64",
-    "dist:win": "electron-builder --win --x64",
-    "dist:mac": "electron-builder --mac --x64",
-    "dist:mac:arm64": "electron-builder --mac --arm64",
-    "dist:mac:both": "electron-builder --mac --x64 --arm64"
+    "dist": "electron-builder -mwl --x64 --publish never",
+    "dist:linux": "electron-builder --linux --x64 --publish never",
+    "dist:win": "electron-builder --win --x64 --publish never",
+    "dist:mac": "electron-builder --mac --x64 --publish never",
+    "dist:mac:arm64": "electron-builder --mac --arm64 --publish never",
+    "dist:mac:both": "electron-builder --mac --x64 --arm64 --publish never"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -73,12 +76,55 @@
       "category": "public.app-category.utilities"
     },
     "linux": {
-      "target": "zip",
+      "target": "tar.gz",
       "icon": "build/64x64.png"
     },
     "fileAssociations": {
       "ext": "enc",
       "name": "Encrypted file"
     }
+  },
+  "release": {
+    "branch": "main",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "CHANGELOG.md"
+          ]
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            {
+              "path": "dist/hider-${nextRelease.gitTag}-win-x64.exe"
+            },
+            {
+              "path": "dist/hider-${nextRelease.gitTag}-mac-x64.dmg"
+            },
+            {
+              "path": "dist/hider-${nextRelease.gitTag}-mac-arm64.dmg"
+            },
+            {
+              "path": "dist/hider-${nextRelease.gitTag}-linux-x64.tar.gz"
+            },
+            {
+              "path": "dist/latest.yml"
+            },
+            {
+              "path": "dist/latest-mac.yml"
+            }
+          ]
+        }
+      ]
+    ]
   }
 }
