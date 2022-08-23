@@ -18,8 +18,5 @@
     },
     "ecmaVersion": "latest"
   },
-  "plugins": ["react", "@typescript-eslint"],
-  "rules": {
-    "@typescript-eslint/no-var-requires": "none"
-  }
+  "plugins": ["react", "@typescript-eslint"]
 }

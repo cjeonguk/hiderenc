@@ -1,7 +1,8 @@
 import { app, BrowserWindow, ipcMain, dialog, Menu } from 'electron';
 import { autoUpdater } from 'electron-updater';
-import { encryptFile, decryptFile } from './modules/encrypt';
 import path from 'path';
+import os from 'os';
+import { encryptFile, decryptFile } from './modules/encrypt';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -76,8 +77,6 @@ autoUpdater.on('update-available', () => {
   if (res) autoUpdater.downloadUpdate();
 });
 
-let progressInterval: number;
-
 autoUpdater.on('download-progress', (progressObj) => {
   mainWindow.setProgressBar(progressObj.percent / 100);
 });
@@ -93,7 +92,7 @@ autoUpdater.on('error', (err) => {
 
 ipcMain.on('open-file', (event) => {
   const selectedFiles = dialog.showOpenDialogSync(mainWindow, {
-    defaultPath: require('os').homedir(),
+    defaultPath: os.homedir(),
   });
   event.returnValue = selectedFiles;
 });

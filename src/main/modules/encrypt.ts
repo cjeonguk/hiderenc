@@ -1,5 +1,5 @@
-import * as CryptoJS from 'crypto-js';
-import * as crypto from 'crypto';
+import CryptoJS from 'crypto-js';
+import crypto from 'crypto';
 import { readFileSync, writeFileSync } from 'fs';
 import { basename, dirname, resolve, extname } from 'path';
 
