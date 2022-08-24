@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/cjeonguk/hider/compare/v1.2.5...v1.3.0) (2022-08-24)
+
+
+### Bug Fixes
+
+* **encrypt:** Show error message if password wrong ([9e3f90f](https://github.com/cjeonguk/hider/commit/9e3f90fbed7ab7beb63bce2e0595db7c712197bb))
+
+
+### Features
+
+* **autoUpdater:** Add progress bar while downloading ([6dcf09c](https://github.com/cjeonguk/hider/commit/6dcf09c7853f55b9eecb97a095e2804c5c8776f1))
+
 # 1.2.5 (2022-08-21)
 
 ### Miscellaneous Tasks
