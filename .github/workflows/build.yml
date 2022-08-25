@@ -1,0 +1,68 @@
+name: Build
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-win:
+    name: Build (Windows)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - run: yarn build
+      - name: Build
+        run: yarn dist:win
+      - name: Upload
+        run: |
+          version="$(node -e "console.log(require('./package.json').version);")"
+          gh release upload v$version "dist/*.exe" "dist/latest.yml"
+
+  build-mac:
+    name: Build (macOS)
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - run: yarn build
+      - name: Build
+        run: yarn dist:mac
+      - name: Upload
+        run: |
+          version="$(node -e "console.log(require('./package.json').version);")"
+          gh release upload v$version "dist/*.dmg" "dist/latest-mac.yml"
+
+  build-win:
+    name: Build (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - run: yarn build
+      - name: Build
+        run: yarn dist:linux
+      - name: Upload
+        run: |
+          version="$(node -e "console.log(require('./package.json').version);")"
+          gh release upload v$version "dist/*.tar.gz"

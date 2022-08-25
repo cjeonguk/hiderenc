@@ -39,15 +39,16 @@
     "start:main": "tsc -p ./src/main && swc ./src/main -d out && NODE_ENV=development electron .",
     "start:renderer": "tsc -p ./src/renderer && webpack serve",
     "test": "echo \"No tests available\"",
+    "lint": "eslint src/**/*.ts src/**/*.tsx",
     "build": "tsc -p ./src/main && tsc -p ./src/renderer && swc ./src/main -d out && webpack --mode=production",
     "build:main": "tsc -p ./src/main && swc ./src/main -d out",
     "build:renderer": "tsc -p ./src/renderer && webpack --mode=production",
     "dist": "electron-builder -mwl --x64 --publish never",
     "dist:linux": "electron-builder --linux --x64 --publish never",
-    "dist:win": "electron-builder --win --x64 --publish never",
-    "dist:mac": "electron-builder --mac --x64 --publish never",
-    "dist:mac:arm64": "electron-builder --mac --arm64 --publish never",
-    "dist:mac:both": "electron-builder --mac --x64 --arm64 --publish never"
+    "dist:win": "electron-builder --win --ia32 --x64 --publish never",
+    "dist:mac": "electron-builder --mac --x64 --arm64 --publish never",
+    "dist:mac:x64": "electron-builder --mac --x64 --publish never",
+    "dist:mac:arm64": "electron-builder --mac --arm64 --publish never"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -101,31 +102,11 @@
           "assets": [
             "package.json",
             "CHANGELOG.md"
-          ]
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]"
         }
       ],
-      [
-        "@semantic-release/github",
-        {
-          "assets": [
-            {
-              "path": "dist/*.exe"
-            },
-            {
-              "path": "dist/*.dmg"
-            },
-            {
-              "path": "dist/*.tar.gz"
-            },
-            {
-              "path": "dist/latest.yml"
-            },
-            {
-              "path": "dist/latest-mac.yml"
-            }
-          ]
-        }
-      ]
+      "@semantic-release/github"
     ]
   }
 }
