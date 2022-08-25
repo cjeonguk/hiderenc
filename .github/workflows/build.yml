@@ -46,7 +46,7 @@ jobs:
           version="$(node -e "console.log(require('./package.json').version);")"
           gh release upload v$version "dist/*.dmg" "dist/latest-mac.yml"
 
-  build-win:
+  build-linux:
     name: Build (Linux)
     runs-on: ubuntu-latest
     steps:
