@@ -4,6 +4,3 @@ updates:
     directory: '/' # Location of package manifests
     schedule:
       interval: 'daily'
-    ignore:
-      - dependency-name: 'electron'
-        update-types: ['version-update:semver-major']
