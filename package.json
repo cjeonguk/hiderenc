@@ -38,9 +38,9 @@
   "scripts": {
     "start:main": "tsc -p ./src/main && swc ./src/main -d out && NODE_ENV=development electron .",
     "start:renderer": "tsc -p ./src/renderer && webpack serve",
-    "test": "echo \"No tests available\"",
+    "test": "tsc -p ./src/main && tsc -p ./src/renderer",
     "lint": "eslint src/**/*.ts src/**/*.tsx",
-    "build": "tsc -p ./src/main && tsc -p ./src/renderer && swc ./src/main -d out && webpack --mode=production",
+    "build": "swc ./src/main -d out && webpack --mode=production",
     "build:main": "tsc -p ./src/main && swc ./src/main -d out",
     "build:renderer": "tsc -p ./src/renderer && webpack --mode=production",
     "dist": "electron-builder -mwl --x64 --publish never",
