@@ -1,8 +1,7 @@
 name: Release
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '30 5 * * 2,6'
 jobs:
   test:
     uses: ./.github/workflows/test.yml
