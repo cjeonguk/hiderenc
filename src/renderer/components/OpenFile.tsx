@@ -21,9 +21,10 @@ export default function OpenFile() {
   useEffect(() => {
     const opened: boolean = window.ipcRenderer.sendSync('file-opened');
     if (opened) {
-      const filePath: string = window.ipcRenderer.sendSync('get-file-path');
+      const [filePath, isEncrypt]: [string, boolean] =
+        window.ipcRenderer.sendSync('get-file-path');
       setFilePaths([filePath]);
-      setEncrypt(false);
+      setEncrypt(isEncrypt);
       handleClickOpen();
     }
   }, []);

@@ -104,7 +104,10 @@ ipcMain.on('file-opened', (event) => {
 });
 
 ipcMain.on('get-file-path', (event) => {
-  event.returnValue = process.argv[1];
+  event.returnValue = [
+    process.argv[1],
+    !(path.extname(process.argv[1]) === '.enc'),
+  ];
 });
 
 ipcMain.on('encrypt-or-decrypt', (event, passwd, encrypt, filePaths) => {
