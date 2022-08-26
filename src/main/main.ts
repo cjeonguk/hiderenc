@@ -111,6 +111,7 @@ ipcMain.on('get-file-path', (event) => {
 });
 
 ipcMain.on('encrypt-or-decrypt', (event, passwd, encrypt, filePaths) => {
+  mainWindow.setProgressBar(2);
   if (encrypt) {
     for (let i = 0; i < filePaths.length; i++) {
       encryptFile(filePaths[i], passwd);
@@ -139,4 +140,5 @@ ipcMain.on('encrypt-or-decrypt', (event, passwd, encrypt, filePaths) => {
         'Maybe this error is because the password you entered is wrong.'
       );
   }
+  mainWindow.setProgressBar(-1);
 });
