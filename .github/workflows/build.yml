@@ -20,9 +20,7 @@ jobs:
       - name: Build
         run: yarn dist:win
       - name: Upload
-        run: |
-          version="$(node -e "console.log(require('./package.json').version);")"
-          gh release upload v$version "dist/*.exe" "dist/latest.yml"
+        run: gh release upload $(git describe --abbrev=0 --tags) "dist/*.exe" "dist/latest.yml"
 
   build-mac:
     name: Build (macOS)
@@ -41,9 +39,7 @@ jobs:
       - name: Build
         run: yarn dist:mac
       - name: Upload
-        run: |
-          version="$(node -e "console.log(require('./package.json').version);")"
-          gh release upload v$version "dist/*.dmg" "dist/latest-mac.yml"
+        run: gh release upload $(git describe --abbrev=0 --tags) "dist/*.dmg" "dist/latest-mac.yml"
 
   build-linux:
     name: Build (Linux)
@@ -62,6 +58,4 @@ jobs:
       - name: Build
         run: yarn dist:linux
       - name: Upload
-        run: |
-          version="$(node -e "console.log(require('./package.json').version);")"
-          gh release upload v$version "dist/*.tar.gz"
+        run: gh release upload $(git describe --abbrev=0 --tags) "dist/*.tar.gz"
