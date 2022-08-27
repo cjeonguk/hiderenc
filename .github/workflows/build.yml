@@ -21,6 +21,8 @@ jobs:
         run: yarn dist:win
       - name: Upload
         run: gh release upload $(git describe --abbrev=0 --tags) "dist/*.exe" "dist/latest.yml"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-mac:
     name: Build (macOS)
@@ -40,6 +42,8 @@ jobs:
         run: yarn dist:mac
       - name: Upload
         run: gh release upload $(git describe --abbrev=0 --tags) "dist/*.dmg" "dist/latest-mac.yml"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-linux:
     name: Build (Linux)
@@ -59,3 +63,5 @@ jobs:
         run: yarn dist:linux
       - name: Upload
         run: gh release upload $(git describe --abbrev=0 --tags) "dist/*.tar.gz"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
