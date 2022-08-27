@@ -1,28 +1,12 @@
-# [1.4.0](https://github.com/cjeonguk/hider/compare/v1.3.0...v1.4.0) (2022-08-27)
-
-
-### Features
-
-* **ipc:** File Associations check if *.enc ([b088102](https://github.com/cjeonguk/hider/commit/b088102c8b8eb7fe382e90cd7dc8776ad5ebd54f))
-* **main:** Add progressbar while encrypting ([1b72426](https://github.com/cjeonguk/hider/commit/1b72426ac4613419352653c590d15cd9564eb6f9))
-
-
-### Reverts
-
-* "chore(deps-dev): bump eslint-plugin-react from 7.30.1 to 7.31.0" ([#19](https://github.com/cjeonguk/hider/issues/19)) ([b5ce9f6](https://github.com/cjeonguk/hider/commit/b5ce9f6cd8bee690a9f891acb6d7164aeb7e4aef))
-* "chore(deps-dev): bump typescript from 4.7.4 to 4.8.2" ([#18](https://github.com/cjeonguk/hider/issues/18)) ([01f7300](https://github.com/cjeonguk/hider/commit/01f73000c52ac456c72b939b7ca327ec1d7000cf))
-
 # [1.3.0](https://github.com/cjeonguk/hider/compare/v1.2.5...v1.3.0) (2022-08-24)
-
 
 ### Bug Fixes
 
-* **encrypt:** Show error message if password wrong ([9e3f90f](https://github.com/cjeonguk/hider/commit/9e3f90fbed7ab7beb63bce2e0595db7c712197bb))
-
+- **encrypt:** Show error message if password wrong ([9e3f90f](https://github.com/cjeonguk/hider/commit/9e3f90fbed7ab7beb63bce2e0595db7c712197bb))
 
 ### Features
 
-* **autoUpdater:** Add progress bar while downloading ([6dcf09c](https://github.com/cjeonguk/hider/commit/6dcf09c7853f55b9eecb97a095e2804c5c8776f1))
+- **autoUpdater:** Add progress bar while downloading ([6dcf09c](https://github.com/cjeonguk/hider/commit/6dcf09c7853f55b9eecb97a095e2804c5c8776f1))
 
 # 1.2.5 (2022-08-21)
 
@@ -34,15 +18,11 @@
 
 - chore(ci): Add latest.yml to release **(e86762c)**
 
-
-
 # 1.2.4 (2022-08-21)
 
 ### Bug Fixes
 
 - (autoUpdater): Change to checkForUpdates **(b975985)**
-
-
 
 # 1.2.3 (2022-08-21)
 
@@ -80,15 +60,11 @@
 
 - (main): Add icon in code **(b4b6c22)**
 
-
-
 # 1.2.2 (2022-08-21)
 
 ### Bug Fixes
 
 - (autoUpdater): Remove unnecessity codes (0fee6da)
-
-
 
 # 1.2.1 (2022-08-21)
 
@@ -106,15 +82,11 @@
 
 - chore(ci): Fix JSON.parse error (47ec22c)
 
-
-
 # 1.2.1-0 (2022-08-20)
 
 ### Miscellaneous Tasks
 
 - chore: Change release notes (707dcef)
-
-
 
 # 1.2.0-0 (2022-08-20)
 
@@ -141,8 +113,6 @@
 ### Bug Fixes
 
 - (autoUpdater): Add ErrorBox to display error (7f22dca)
-
-
 
 # 1.1.0-0 (2022-08-17)
 
