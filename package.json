@@ -27,7 +27,7 @@
     "webpack-dev-server": "^4.10.0"
   },
   "name": "hider",
-  "version": "1.4.1",
+  "version": "1.4.0",
   "description": "GUI tool to encrypt&decrypt files",
   "main": "out/main/main.js",
   "author": "Jeonguk Choi",
