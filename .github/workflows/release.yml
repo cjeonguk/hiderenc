@@ -31,3 +31,4 @@ jobs:
           GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
   build:
     uses: ./.github/workflows/build.yml
+    needs: release
