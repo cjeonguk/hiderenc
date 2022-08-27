@@ -22,7 +22,9 @@ jobs:
       - name: Build
         run: yarn dist:win
       - name: Upload
-        run: gh release upload $(git describe --abbrev=0 --tags) "dist/*.exe" "dist/latest.yml"
+        run: |
+          version="$(git describe --abbrev=0 --tags)"
+          gh release upload $version "dist/hider-$version-win-x64.exe" "dist/hider-$version-win-ia32.exe" "dist/latest.yml"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -45,7 +47,9 @@ jobs:
       - name: Build
         run: yarn dist:mac
       - name: Upload
-        run: gh release upload $(git describe --abbrev=0 --tags) "dist/*.dmg" "dist/latest-mac.yml"
+        run: |
+          version="$(git describe --abbrev=0 --tags)"
+          gh release upload $version "dist/hider-$version-mac-x64.dmg" "dist/hider-$version-mac-arm64.dmg" "dist/latest-mac.yml"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -68,6 +72,8 @@ jobs:
       - name: Build
         run: yarn dist:linux
       - name: Upload
-        run: gh release upload $(git describe --abbrev=0 --tags) "dist/*.tar.gz"
+        run: |
+          version="$(git describe --abbrev=0 --tags)"
+          gh release upload $version "dist/hider-$version-linux-x64.tar.gz"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
