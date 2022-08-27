@@ -2,6 +2,8 @@ name: Release
 on:
   schedule:
     - cron: '30 5 * * 2,6'
+  workflow_dispatch:
+
 jobs:
   test:
     uses: ./.github/workflows/test.yml
@@ -21,11 +23,11 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - name: Set commit author
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Release
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+  build:
+    uses: ./.github/workflows/build.yml
