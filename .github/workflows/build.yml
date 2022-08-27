@@ -25,6 +25,7 @@ jobs:
         run: |
           version="$(git describe --abbrev=0 --tags)"
           gh release upload $version "dist/hider-$version-win-x64.exe" "dist/hider-$version-win-ia32.exe" "dist/latest.yml"
+        shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
