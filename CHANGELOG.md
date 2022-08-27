@@ -1,24 +1,15 @@
-## [1.4.1](https://github.com/cjeonguk/hider/compare/v1.4.0...v1.4.1) (2022-08-27)
-
-
-### Bug Fixes
-
-* **main:** Raise error if file is bigger than 2GB ([#22](https://github.com/cjeonguk/hider/issues/22)) ([30a9a62](https://github.com/cjeonguk/hider/commit/30a9a62a00561ecbcd8d3db6e62f8459bc573db1)), closes [#6](https://github.com/cjeonguk/hider/issues/6)
-
 # [1.4.0](https://github.com/cjeonguk/hider/compare/v1.3.0...v1.4.0) (2022-08-27)
-
 
 ### Features
 
-* **ipc:** File Associations check if *.enc ([b088102](https://github.com/cjeonguk/hider/commit/b088102c8b8eb7fe382e90cd7dc8776ad5ebd54f))
-* **main:** Add progressbar while encrypting ([1b72426](https://github.com/cjeonguk/hider/commit/1b72426ac4613419352653c590d15cd9564eb6f9))
-
+- **ipc:** File Associations check if \*.enc ([b088102](https://github.com/cjeonguk/hider/commit/b088102c8b8eb7fe382e90cd7dc8776ad5ebd54f))
+- **main:** Add progressbar while encrypting ([1b72426](https://github.com/cjeonguk/hider/commit/1b72426ac4613419352653c590d15cd9564eb6f9))
 
 ### Reverts
 
-* "chore(deps-dev): bump eslint-plugin-react from 7.30.1 to 7.31.0" ([#19](https://github.com/cjeonguk/hider/issues/19)) ([b5ce9f6](https://github.com/cjeonguk/hider/commit/b5ce9f6cd8bee690a9f891acb6d7164aeb7e4aef))
-* "chore(deps-dev): bump typescript from 4.7.4 to 4.8.2" ([#18](https://github.com/cjeonguk/hider/issues/18)) ([01f7300](https://github.com/cjeonguk/hider/commit/01f73000c52ac456c72b939b7ca327ec1d7000cf))
-* Release v1.4.0 ([3fe3714](https://github.com/cjeonguk/hider/commit/3fe3714ad146b7681747fe79c3bff39335ca653c))
+- "chore(deps-dev): bump eslint-plugin-react from 7.30.1 to 7.31.0" ([#19](https://github.com/cjeonguk/hider/issues/19)) ([b5ce9f6](https://github.com/cjeonguk/hider/commit/b5ce9f6cd8bee690a9f891acb6d7164aeb7e4aef))
+- "chore(deps-dev): bump typescript from 4.7.4 to 4.8.2" ([#18](https://github.com/cjeonguk/hider/issues/18)) ([01f7300](https://github.com/cjeonguk/hider/commit/01f73000c52ac456c72b939b7ca327ec1d7000cf))
+- Release v1.4.0 ([3fe3714](https://github.com/cjeonguk/hider/commit/3fe3714ad146b7681747fe79c3bff39335ca653c))
 
 # [1.3.0](https://github.com/cjeonguk/hider/compare/v1.2.5...v1.3.0) (2022-08-24)
 
