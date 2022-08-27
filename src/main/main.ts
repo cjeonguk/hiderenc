@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain, dialog, Menu } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import path from 'path';
 import os from 'os';
+import fs from 'fs';
 import { encryptFile, decryptFile } from './modules/encrypt';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -93,12 +94,17 @@ autoUpdater.on('error', (err) => {
 ipcMain.on('open-file', (event) => {
   const selectedFiles = dialog.showOpenDialogSync(mainWindow, {
     defaultPath: os.homedir(),
+    properties: ['openFile', 'multiSelections'],
   });
   event.returnValue = selectedFiles;
 });
 
 ipcMain.on('file-opened', (event) => {
-  if (process.argv.length >= 2 && !isDev) {
+  if (
+    process.argv.length >= 2 &&
+    !isDev &&
+    fs.lstatSync(process.argv[1]).isFile()
+  ) {
     event.returnValue = true;
   } else event.returnValue = false;
 });
@@ -112,33 +118,33 @@ ipcMain.on('get-file-path', (event) => {
 
 ipcMain.on('encrypt-or-decrypt', (event, passwd, encrypt, filePaths) => {
   mainWindow.setProgressBar(2);
+  let success = '';
   if (encrypt) {
     for (let i = 0; i < filePaths.length; i++) {
-      encryptFile(filePaths[i], passwd);
+      success = encryptFile(filePaths[i], passwd);
     }
-    const options = {
-      type: 'info',
-      title: 'Information',
-      message: 'Encryption succeed.',
-    };
-    dialog.showMessageBox(mainWindow, options);
+    if (success === '') {
+      const options = {
+        type: 'info',
+        title: 'Information',
+        message: 'Encryption succeed.',
+      };
+      dialog.showMessageBox(mainWindow, options);
+    } else {
+      dialog.showErrorBox('ERROR', success);
+    }
   } else {
-    let success = true;
     for (let i = 0; i < filePaths.length; i++) {
       success = decryptFile(filePaths[i], passwd);
     }
-    if (success) {
+    if (success === '') {
       const options = {
         type: 'info',
         title: 'Information',
         message: 'Decryption succeed.',
       };
       dialog.showMessageBox(mainWindow, options);
-    } else
-      dialog.showErrorBox(
-        'ERROR',
-        'Maybe this error is because the password you entered is wrong.'
-      );
+    } else dialog.showErrorBox('ERROR', success);
   }
   mainWindow.setProgressBar(-1);
 });
