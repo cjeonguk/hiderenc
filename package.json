@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.241",
@@ -94,6 +95,12 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "./.github/scripts/build.sh"
+        }
+      ],
       "@semantic-release/changelog",
       "@semantic-release/npm",
       [
@@ -106,7 +113,28 @@
           "message": "chore(release): ${nextRelease.version} [skip ci]"
         }
       ],
-      "@semantic-release/github"
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            {
+              "path": "./dist/*.exe"
+            },
+            {
+              "path": "./dist/*.tar.gz"
+            },
+            {
+              "path": "./dist/*.dmg"
+            },
+            {
+              "path": "./dist/latest.yml"
+            },
+            {
+              "path": "./dist/latest-mac.yml"
+            }
+          ]
+        }
+      ]
     ]
   }
 }
