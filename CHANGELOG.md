@@ -1,3 +1,15 @@
+## [1.4.1](https://github.com/cjeonguk/hider/compare/v1.4.0...v1.4.1) (2022-08-27)
+
+
+### Bug Fixes
+
+* **main:** Raise error if file is bigger than 2GB ([#22](https://github.com/cjeonguk/hider/issues/22)) ([30a9a62](https://github.com/cjeonguk/hider/commit/30a9a62a00561ecbcd8d3db6e62f8459bc573db1)), closes [#6](https://github.com/cjeonguk/hider/issues/6)
+
+
+### Reverts
+
+* Release ([ade6f0e](https://github.com/cjeonguk/hider/commit/ade6f0ea87b6241f48d4043f7ca9659d5461901d))
+
 # [1.4.0](https://github.com/cjeonguk/hider/compare/v1.3.0...v1.4.0) (2022-08-27)
 
 ### Features
