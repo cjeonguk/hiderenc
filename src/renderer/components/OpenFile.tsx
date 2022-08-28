@@ -79,7 +79,7 @@ export default function OpenFile() {
         </ButtonGroup>
       </Box>
       <Dialog open={openDialog} onClose={handleClose} fullScreen>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Password</DialogTitle>
         <DialogContent>
           <DialogContentText>Enter your password:</DialogContentText>
           <TextField
