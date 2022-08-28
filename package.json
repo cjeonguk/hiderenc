@@ -95,12 +95,6 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/exec",
-        {
-          "prepareCmd": "./.github/scripts/build.sh"
-        }
-      ],
       "@semantic-release/changelog",
       "@semantic-release/npm",
       [
@@ -111,6 +105,12 @@
             "CHANGELOG.md"
           ],
           "message": "chore(release): ${nextRelease.version} [skip ci]"
+        }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "./.github/scripts/build.sh"
         }
       ],
       [
