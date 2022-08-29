@@ -153,36 +153,6 @@ ipcMain.on(
         dialog.showMessageBoxSync(mainWindow, options);
       }
     }
-    /*
-  let success = '';
-  if (encrypt) {
-    for (let i = 0; i < filePaths.length; i++) {
-      success = encryptFile(filePaths[i], passwd);
-    }
-    if (success === '') {
-      const options = {
-        type: 'info',
-        title: 'Information',
-        message: 'Encryption succeed.',
-      };
-      dialog.showMessageBox(mainWindow, options);
-    } else {
-      dialog.showErrorBox('ERROR', success);
-    }
-  } else {
-    for (let i = 0; i < filePaths.length; i++) {
-      success = decryptFile(filePaths[i], passwd);
-    }
-    if (success === '') {
-      const options = {
-        type: 'info',
-        title: 'Information',
-        message: 'Decryption succeed.',
-      };
-      dialog.showMessageBox(mainWindow, options);
-    } else dialog.showErrorBox('ERROR', success);
-  }
-  */
     mainWindow.setProgressBar(-1);
   }
 );
