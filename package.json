@@ -5,9 +5,9 @@
     "@semantic-release/git": "^10.0.1",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.241",
-    "@types/crypto-js": "^4.1.1",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@types/tar": "^6.1.2",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
     "css-loader": "^6.7.1",
@@ -55,10 +55,10 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.10.2",
-    "crypto-js": "^4.1.1",
     "electron-updater": "^5.2.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tar": "^6.1.11"
   },
   "build": {
     "appId": "com.electron.hider",

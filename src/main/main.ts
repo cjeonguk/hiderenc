@@ -3,7 +3,7 @@ import { autoUpdater } from 'electron-updater';
 import path from 'path';
 import os from 'os';
 import fs from 'fs';
-import { encryptFile, decryptFile } from './modules/encrypt';
+import { encFiles, decFiles } from './modules/encrypt';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -96,7 +96,7 @@ autoUpdater.on('error', (err) => {
 });
 
 ipcMain.on('open-file', (event) => {
-  const selectedFiles = dialog.showOpenDialogSync(mainWindow, {
+  const selectedFiles = dialog.showOpenDialogSync({
     defaultPath: os.homedir(),
     properties: ['openFile', 'multiSelections'],
   });
@@ -120,8 +120,40 @@ ipcMain.on('get-file-path', (event) => {
   ];
 });
 
-ipcMain.on('encrypt-or-decrypt', (event, passwd, encrypt, filePaths) => {
-  mainWindow.setProgressBar(2);
+ipcMain.on(
+  'encrypt-or-decrypt',
+  (event, passwd: string, encrypt: boolean, filePaths: string[]) => {
+    mainWindow.setProgressBar(2);
+    if (encrypt) {
+      const resultFilePath = dialog.showSaveDialogSync({
+        defaultPath: os.homedir(),
+      });
+      if (typeof resultFilePath !== 'undefined') {
+        encFiles(filePaths, passwd, resultFilePath + '.enc');
+        const options = {
+          type: 'info',
+          title: 'Information',
+          message: 'Encryption succeed.',
+        };
+        dialog.showMessageBoxSync(mainWindow, options);
+      }
+    } else {
+      let result = true;
+      for (let i = 0; i < filePaths.length; i++) {
+        result = decFiles(filePaths[i], passwd);
+        if (!result) break;
+      }
+      if (!result) dialog.showErrorBox('ERROR', 'Wrong password.');
+      else {
+        const options = {
+          type: 'info',
+          title: 'Information',
+          message: 'Decryption succeed.',
+        };
+        dialog.showMessageBoxSync(mainWindow, options);
+      }
+    }
+    /*
   let success = '';
   if (encrypt) {
     for (let i = 0; i < filePaths.length; i++) {
@@ -150,5 +182,7 @@ ipcMain.on('encrypt-or-decrypt', (event, passwd, encrypt, filePaths) => {
       dialog.showMessageBox(mainWindow, options);
     } else dialog.showErrorBox('ERROR', success);
   }
-  mainWindow.setProgressBar(-1);
-});
+  */
+    mainWindow.setProgressBar(-1);
+  }
+);

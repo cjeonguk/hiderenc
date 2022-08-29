@@ -1,73 +1,99 @@
-import CryptoJS from 'crypto-js';
 import crypto from 'crypto';
-import { readFileSync, writeFileSync } from 'fs';
+import {
+  readFileSync,
+  writeFileSync,
+  createReadStream,
+  createWriteStream,
+  unlinkSync,
+} from 'fs';
+import tar from 'tar';
 import { basename, dirname, resolve, extname } from 'path';
 
-export const encrypt = (input: string, password: string) => {
-  const iv = CryptoJS.lib.WordArray.random(16);
-  const salt = CryptoJS.lib.WordArray.random(16);
-  const key = CryptoJS.PBKDF2(password, salt, { keySize: 32 });
-  const ciphertext = CryptoJS.AES.encrypt(input, key, {
-    iv: iv,
-  }).toString();
-  const hmac = CryptoJS.HmacSHA256(
-    ciphertext,
-    CryptoJS.SHA256(password)
-  ).toString();
-  return hmac + iv.toString() + salt.toString() + ciphertext;
-};
-
-// TODO: Split input into ciphertext, iv, salt and deal with them saparately
-// Also see Encryption Result about iv and salt
-export const decrypt = (
-  input: string,
+export const encFiles = (
+  filePaths: string[],
   password: string,
-  randomStr: string
-): string => {
-  const transithmac = input.substring(0, 64);
-  const iv = CryptoJS.enc.Hex.parse(input.substring(64, 96));
-  const salt = CryptoJS.enc.Hex.parse(input.substring(96, 128));
-  const ciphertext = input.substring(128);
-  const decryptedhmac = CryptoJS.HmacSHA256(
-    ciphertext,
-    CryptoJS.SHA256(password)
-  ).toString();
-  if (transithmac !== decryptedhmac) return randomStr;
-  const key = CryptoJS.PBKDF2(password, salt, { keySize: 32 });
-  const deciphertext = CryptoJS.AES.decrypt(ciphertext, key, {
-    iv: iv,
-  }).toString(CryptoJS.enc.Utf8);
-  return deciphertext;
-};
-
-export const encryptFile = (filePath: string, password: string) => {
-  try {
-    const content = readFileSync(filePath, 'base64');
-    const encryptedContent = encrypt(content, password);
-    writeFileSync(filePath + '.enc', encryptedContent, 'utf8');
-    return '';
-  } catch (err) {
-    return 'Maybe this error occured because the file you choose is bigger than limit (2GB)';
+  resultFilePath = 'encrypted.enc'
+) => {
+  const salt = crypto.randomBytes(16);
+  const iv = crypto.randomBytes(16);
+  const key = crypto.pbkdf2Sync(password, salt, 100, 32, 'sha256');
+  const hashedPw = crypto
+    .createHash('sha256')
+    .update(password + salt)
+    .digest('hex');
+  writeFileSync(
+    resolve(dirname(resultFilePath), '.encd'),
+    `${hashedPw}${iv.toString('hex')}${salt.toString('hex')}`,
+    'utf8'
+  );
+  tar.create(
+    { file: resultFilePath, sync: true, cwd: dirname(resultFilePath) },
+    ['.encd']
+  );
+  unlinkSync(resolve(dirname(resultFilePath), '.encd'));
+  for (let i = 0; i < filePaths.length; i++) {
+    const rs = createReadStream(filePaths[i]);
+    rs.pipe(crypto.createCipheriv('aes-256-cbc', key, iv)).pipe(
+      createWriteStream(filePaths[i] + '.encf')
+    );
+    rs.on('end', () => {
+      tar.update(
+        { file: resultFilePath, sync: true, cwd: dirname(filePaths[i]) },
+        [basename(filePaths[i]) + '.encf']
+      );
+      unlinkSync(filePaths[i] + '.encf');
+    });
   }
 };
 
-export const decryptFile = (filePath: string, password: string) => {
-  try {
-    const randomStr = (
-      crypto.randomInt(256) * crypto.randomInt(256)
-    ).toString();
-    const content = readFileSync(filePath, 'utf8');
-    const decryptedContent = decrypt(content, password, randomStr);
-    if (decryptedContent !== randomStr) {
-      writeFileSync(
-        resolve(dirname(filePath), basename(filePath, extname(filePath))),
-        decryptedContent,
-        'base64'
-      );
-      return '';
-    } else
-      return 'Maybe this error occured because the password you entered is wrong.';
-  } catch (err) {
-    return 'Maybe this error occured because the file you choose is bigger than limit (2GB)';
+export const decFiles = (filePath: string, password: string) => {
+  const fileNames: string[] = [];
+  tar.list({
+    file: filePath,
+    onentry: (entry) => fileNames.push(entry.path.toString()),
+    sync: true,
+  });
+  tar.extract(
+    {
+      file: filePath,
+      cwd: dirname(filePath),
+      sync: true,
+    },
+    ['.encd']
+  );
+  const data = readFileSync(resolve(dirname(filePath), '.encd'), 'utf8');
+  const hashedPw = data.slice(0, 64);
+  const iv = Buffer.from(data.slice(64, 96), 'hex');
+  const salt = Buffer.from(data.slice(96, 128), 'hex');
+  if (
+    hashedPw ===
+    crypto
+      .createHash('sha256')
+      .update(password + salt)
+      .digest('hex')
+  ) {
+    const key = crypto.pbkdf2Sync(password, salt, 100, 32, 'sha256');
+    tar.extract({ file: filePath, cwd: dirname(filePath), sync: true });
+    unlinkSync(resolve(dirname(filePath), '.encd'));
+    for (let i = 0; i < fileNames.length; i++) {
+      if (fileNames[i] !== '.encd') {
+        const rs = createReadStream(resolve(dirname(filePath), fileNames[i]));
+        rs.pipe(crypto.createDecipheriv('aes-256-cbc', key, iv)).pipe(
+          createWriteStream(
+            resolve(
+              dirname(filePath),
+              basename(fileNames[i], extname(fileNames[i]))
+            )
+          )
+        );
+        rs.on('end', () => {
+          unlinkSync(resolve(dirname(filePath), fileNames[i]));
+        });
+      }
+    }
+    return true;
+  } else {
+    unlinkSync(resolve(dirname(filePath), '.encd'));
+    return false;
   }
 };
