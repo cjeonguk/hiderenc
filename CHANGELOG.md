@@ -1,3 +1,21 @@
+# [2.0.0](https://github.com/cjeonguk/hider/compare/v1.4.1...v2.0.0) (2022-08-30)
+
+
+### Bug Fixes
+
+* **main:** Run update After program turned off ([ccf6cad](https://github.com/cjeonguk/hider/commit/ccf6cad39132d72ca91e52f75476e969aea4e928))
+* **renderer:** Change password dialog title ([a9d5538](https://github.com/cjeonguk/hider/commit/a9d55383707a82cf8f3797ccb8529fd53ece5006))
+
+
+### Features
+
+* **main:** Use `tar` to encrypt files ([1d6dc7e](https://github.com/cjeonguk/hider/commit/1d6dc7e25ecf230188919ae9e680c8fe36694379))
+
+
+### BREAKING CHANGES
+
+* **main:** `encrypt` module changed a lot
+
 ## [1.4.1](https://github.com/cjeonguk/hider/compare/v1.4.0...v1.4.1) (2022-08-28)
 
 
