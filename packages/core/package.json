@@ -1,0 +1,14 @@
+{
+  "name": "@hider/core",
+  "version": "1.0.0",
+  "description": "Core package of Hider",
+  "author": "Jeonguk Choi",
+  "main": "./out/index.js",
+  "license": "MIT",
+  "repository": "https://github.com/cjeonguk/hider/packages/core",
+  "homepage": "https://github.com/cjeonguk/hider/packages/core#readme",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json && swc ./src -d out",
+    "test": "tsc -p ./tsconfig.json"
+  }
+}

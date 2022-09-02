@@ -3,7 +3,7 @@ import { autoUpdater } from 'electron-updater';
 import path from 'path';
 import os from 'os';
 import fs from 'fs';
-import { encFiles, decFiles } from './modules/encrypt';
+import { encFiles, decFiles } from '@hider/core';
 
 const isDev = process.env.NODE_ENV === 'development';
 
