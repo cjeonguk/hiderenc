@@ -10,5 +10,8 @@
   "scripts": {
     "build": "tsc -p ./tsconfig.json && swc ./src -d out",
     "test": "tsc -p ./tsconfig.json"
+  },
+  "dependencies": {
+    "tar": "^6.1.11"
   }
 }

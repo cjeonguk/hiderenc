@@ -56,7 +56,7 @@
       "target": "nsis"
     },
     "nsis": {
-      "license": "LICENSE",
+      "license": "../LICENSE",
       "perMachine": true,
       "oneClick": false,
       "runAfterFinish": false,
