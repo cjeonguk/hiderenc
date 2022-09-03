@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/cjeonguk/hider/compare/v3.0.0...v3.0.1) (2022-09-03)
+
+
+### Bug Fixes
+
+* **build:** Change license path ([d3d1d65](https://github.com/cjeonguk/hider/commit/d3d1d65b5ac92cca4159e9e91723c8498b456772))
+
 # [3.0.0](https://github.com/cjeonguk/hider/compare/v2.0.0...v3.0.0) (2022-09-03)
 
 
