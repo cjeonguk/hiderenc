@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/cjeonguk/hider/compare/v2.0.0...v3.0.0) (2022-09-03)
+
+
+### Code Refactoring
+
+* **hider:** Change repo to monorepo ([a1f34c9](https://github.com/cjeonguk/hider/commit/a1f34c95a861b84ab683c3bca206496c0b45c61b))
+
+
+### BREAKING CHANGES
+
+* **hider:** Change repo to monorepo
+
 # [2.0.0](https://github.com/cjeonguk/hider/compare/v1.4.1...v2.0.0) (2022-08-30)
 
 
