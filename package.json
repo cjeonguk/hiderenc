@@ -19,8 +19,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspace hider build && yarn workspace @hider/core build",
-    "test": "yarn workspace hider test && yarn workspace @hider/core test",
+    "build": "yarn workspace hider build && yarn workspace @hider/core build && yarn workspace @hider/cli build",
+    "test": "yarn workspace hider test && yarn workspace @hider/core test && yarn workspace @hider/cli test",
     "lint": "eslint app/src/**/*.ts app/src/**/*.tsx packages/*/src/**/*.ts",
     "dist:win": "yarn workspace hider dist:win",
     "dist:mac": "yarn workspace hider dist:mac",
@@ -32,7 +32,17 @@
       "main"
     ],
     "plugins": [
-      "@semantic-release/commit-analyzer",
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "releaseRules": [
+            {
+              "scope": "packages",
+              "release": false
+            }
+          ]
+        }
+      ],
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
       [
