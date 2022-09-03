@@ -1,14 +1,17 @@
 {
-  "name": "@hider/core",
+  "name": "@hider/cli",
   "version": "1.0.0",
   "description": "Core package of Hider",
   "author": "Jeonguk Choi",
-  "main": "./out/index.js",
+  "main": "index.js",
   "license": "MIT",
+  "bin": {
+    "hider": "./out/cli.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/cjeonguk/hider/packages/core.git",
-    "directory": "packages/core"
+    "directory": "packages/cli"
   },
   "homepage": "https://github.com/cjeonguk/hider/packages/core#readme",
   "scripts": {
@@ -16,6 +19,10 @@
     "test": "tsc -p ./tsconfig.json"
   },
   "dependencies": {
-    "tar": "^6.1.11"
+    "@hider/core": "^1.0.0",
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "@types/yargs": "^17.0.12"
   }
 }
