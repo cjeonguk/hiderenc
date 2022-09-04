@@ -34,8 +34,11 @@ yargs.command(
     }),
   (argv) => {
     if (fs.existsSync(argv.f)) {
-      if (!decFiles(argv.f, argv.p)) {
+      const result = decFiles(argv.f, argv.p);
+      if (result === 1) {
         console.log('ERROR: Wrong password');
+      } else if (result === 2) {
+        console.log('ERROR: ' + argv.f + "wasn't encrypted yet");
       } else console.log('Decryption succeed.');
     } else console.log('ERROR: ' + argv.f + " doesn't exists");
   }

@@ -19,8 +19,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspace hider build && yarn workspace @hider/core build && yarn workspace @hider/cli build",
-    "test": "yarn workspace hider test && yarn workspace @hider/core test && yarn workspace @hider/cli test",
+    "build": "yarn workspaces run build",
+    "test": "yarn workspaces run test",
     "lint": "eslint app/src/**/*.ts app/src/**/*.tsx packages/*/src/**/*.ts",
     "dist:win": "yarn workspace hider dist:win",
     "dist:mac": "yarn workspace hider dist:mac",

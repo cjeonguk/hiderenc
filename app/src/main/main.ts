@@ -129,7 +129,13 @@ ipcMain.on(
         defaultPath: os.homedir(),
       });
       if (typeof resultFilePath !== 'undefined') {
-        encFiles(filePaths, passwd, resultFilePath + '.enc');
+        encFiles(
+          filePaths,
+          passwd,
+          path.extname(resultFilePath) === '.enc'
+            ? resultFilePath
+            : resultFilePath + '.enc'
+        );
         const options = {
           type: 'info',
           title: 'Information',
@@ -138,12 +144,16 @@ ipcMain.on(
         dialog.showMessageBoxSync(mainWindow, options);
       }
     } else {
-      let result = true;
-      for (let i = 0; i < filePaths.length; i++) {
+      let result = 0;
+      let i;
+      for (i = 0; i < filePaths.length; i++) {
         result = decFiles(filePaths[i], passwd);
-        if (!result) break;
+        if (result !== 0) break;
       }
-      if (!result) dialog.showErrorBox('ERROR', 'Wrong password.');
+      if (result === 1)
+        dialog.showErrorBox('ERROR', 'Wrong password - ' + filePaths[i]);
+      else if (result === 2)
+        dialog.showErrorBox('ERROR', "Wasn't encrypted yet - " + filePaths[i]);
       else {
         const options = {
           type: 'info',
