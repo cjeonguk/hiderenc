@@ -1,3 +1,16 @@
+# [3.1.0](https://github.com/cjeonguk/hider/compare/v3.0.1...v3.1.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* **main:** Quit program after update downloaded ([13a6061](https://github.com/cjeonguk/hider/commit/13a6061017893b37f891c3762515922e4a0743d9))
+
+
+### Features
+
+* **core:** Check if file wasn't encrypted ([3302e82](https://github.com/cjeonguk/hider/commit/3302e82bab726b2de217c1b3346f441612419786))
+* **packages:** Add cli version ([e985606](https://github.com/cjeonguk/hider/commit/e9856060163951a89403d6c355999e095ec476d4))
+
 ## [3.0.1](https://github.com/cjeonguk/hider/compare/v3.0.0...v3.0.1) (2022-09-03)
 
 
