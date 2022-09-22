@@ -1,3 +1,3 @@
-# @hider/core
+# @cjeonguk/hider
 
 Core package of hider

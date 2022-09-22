@@ -7,11 +7,12 @@ import {
 } from 'fs';
 import tar from 'tar';
 import { basename, dirname, resolve } from 'path';
+import { homedir } from 'os';
 
 export default (
   filePaths: string[],
   password: string,
-  resultFilePath = 'encrypted.enc'
+  resultFilePath = resolve(homedir(), 'encrypted.enc')
 ) => {
   const salt = crypto.randomBytes(16);
   const iv = crypto.randomBytes(16);

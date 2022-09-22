@@ -1,5 +1,5 @@
 {
-  "name": "@hider/cli",
+  "name": "@cjeonguk/hider-cli",
   "version": "1.0.0",
   "description": "Core package of Hider",
   "author": "Jeonguk Choi",
@@ -19,7 +19,7 @@
     "test": "tsc -p ./tsconfig.json"
   },
   "dependencies": {
-    "@hider/core": "^1.0.0",
+    "@cjeonguk/hider": "^1.0.0",
     "yargs": "^17.5.1"
   },
   "devDependencies": {

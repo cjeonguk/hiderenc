@@ -8,7 +8,11 @@ import {
   unlinkSync,
 } from 'fs';
 
-export default (filePath: string, password: string) => {
+export default (
+  filePath: string,
+  password: string,
+  outputPath = dirname(filePath)
+) => {
   try {
     const fileNames: string[] = [];
     tar.list({
@@ -43,10 +47,7 @@ export default (filePath: string, password: string) => {
           const rs = createReadStream(resolve(dirname(filePath), fileNames[i]));
           rs.pipe(crypto.createDecipheriv('aes-256-cbc', key, iv)).pipe(
             createWriteStream(
-              resolve(
-                dirname(filePath),
-                basename(fileNames[i], extname(fileNames[i]))
-              )
+              resolve(outputPath, basename(fileNames[i], extname(fileNames[i])))
             )
           );
           rs.on('end', () => {

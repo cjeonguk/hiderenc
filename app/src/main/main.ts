@@ -3,7 +3,7 @@ import { autoUpdater } from 'electron-updater';
 import path from 'path';
 import os from 'os';
 import fs from 'fs';
-import { encFiles, decFiles } from '@hider/core';
+import { encFiles, decFiles } from '@cjeonguk/hider';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -123,6 +123,10 @@ ipcMain.on(
     if (encrypt) {
       const resultFilePath = dialog.showSaveDialogSync({
         defaultPath: os.homedir(),
+        filters: [
+          { name: 'Encrypted files', extensions: ['enc'] },
+          { name: 'All files', extensions: ['*'] },
+        ],
       });
       if (typeof resultFilePath !== 'undefined') {
         encFiles(

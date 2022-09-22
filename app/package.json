@@ -19,7 +19,7 @@
     "electron-updater": "^5.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@hider/core": "^1.0.0"
+    "@cjeonguk/hider": "^1.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.18",
@@ -34,11 +34,13 @@
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
     "electron": "^20.1.1",
-    "electron-builder": "^23.3.3"
+    "electron-builder": "^23.3.3",
+    "npm-run-all": "4.1.5"
   },
   "scripts": {
     "start:main": "tsc -p ./src/main && swc ./src/main -d out && NODE_ENV=development electron .",
     "start:renderer": "tsc -p ./src/renderer && webpack serve",
+    "start": "npm-run-all -p start:renderer start:main",
     "test": "tsc -p ./src/main && tsc -p ./src/renderer",
     "build": "swc ./src/main -d out && webpack --mode=production",
     "build:main": "tsc -p ./src/main && swc ./src/main -d out",
