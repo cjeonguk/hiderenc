@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/cjeonguk/hider/compare/v3.1.0...v3.2.0) (2022-09-24)
+
+
+### Features
+
+* **core:** Add output dir to decFiles ([dcf6d6b](https://github.com/cjeonguk/hider/commit/dcf6d6bcea9602b45e4ff50f91438838f5554562))
+
 # [3.1.0](https://github.com/cjeonguk/hider/compare/v3.0.1...v3.1.0) (2022-09-06)
 
 
