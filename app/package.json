@@ -65,8 +65,8 @@
       "perMachine": true,
       "oneClick": false,
       "runAfterFinish": false,
-      "installerIcon": "build/icon.ico",
-      "uninstallerIcon": "build/icon.ico"
+      "installerIcon": "build/256x256.png",
+      "uninstallerIcon": "build/256x256.png"
     },
     "mac": {
       "target": "dmg",
