@@ -38,8 +38,8 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Fmt
         run: yarn fmt
-  build:
-    name: Build (dist)
+  build-macos:
+    name: Build (macOS)
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -52,7 +52,43 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Build
-        run: ./scripts/build.sh
+        run: |
+          yarn build
+          yarn dist:mac
+  build-win:
+    name: Build (Windows)
+      runs-on: windows-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Setup Node.js
+          uses: actions/setup-node@v2
+          with:
+            node-version: 16
+            cache: 'yarn'
+        - name: Install dependencies
+          run: yarn install --frozen-lockfile
+        - name: Build
+          run: |
+            yarn build
+            yarn dist:win
+  build-linux:
+    name: Build (Linux)
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Setup Node.js
+          uses: actions/setup-node@v2
+          with:
+            node-version: 16
+            cache: 'yarn'
+        - name: Install dependencies
+          run: yarn install --frozen-lockfile
+        - name: Build
+          run: |
+            yarn build
+            yarn dist:linux
   test:
     name: Test
     runs-on: ubuntu-latest
