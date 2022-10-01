@@ -42,7 +42,7 @@
         {
           "releaseRules": [
             {
-              "scope": "packages",
+              "scope": "cli",
               "release": false
             }
           ]

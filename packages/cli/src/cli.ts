@@ -3,6 +3,7 @@ import yargs from 'yargs';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
+import readline from 'readline';
 import { encFiles, decFiles } from '@cjeonguk/hider';
 
 yargs.scriptName('hider');
@@ -17,12 +18,6 @@ yargs.command(
         demandOption: true,
         description: 'Paths of files to encrypt',
       },
-      p: {
-        alias: 'password',
-        type: 'string',
-        demandOption: true,
-        description: 'Password of the file',
-      },
       o: {
         alias: 'output',
         type: 'string',
@@ -31,18 +26,26 @@ yargs.command(
       },
     }),
   (argv) => {
-    const filenames: string[] = [];
-    for (let i = 0; i < argv.f.length; i++) {
-      if (fs.existsSync(argv.f[i].toString()))
-        filenames.push(argv.f[i].toString());
-      else console.log('ERROR: ' + argv.f[i] + " doesn't exists");
-    }
-    if (argv.o === '') {
-      encFiles(filenames, argv.p, 'encrypted.enc');
-    } else {
-      encFiles(filenames, argv.p, argv.o);
-    }
-    console.log('Encryption succeed.');
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+    rl.question('Enter the password: ', (answer) => {
+      const filenames: string[] = [];
+      for (let i = 0; i < argv.f.length; i++) {
+        if (fs.existsSync(argv.f[i].toString()))
+          filenames.push(argv.f[i].toString());
+        else console.log('ERROR: ' + argv.f[i] + " doesn't exists");
+      }
+      if (argv.o === '') {
+        encFiles(filenames, answer, 'encrypted.enc');
+      } else {
+        encFiles(filenames, answer, argv.o);
+      }
+      console.log('Encryption succeed.');
+
+      rl.close();
+    });
   }
 );
 yargs.command(
@@ -55,12 +58,6 @@ yargs.command(
         type: 'string',
         demandOption: true,
         description: 'Path of the file to decrypt',
-      },
-      p: {
-        alias: 'password',
-        type: 'string',
-        demandOption: true,
-        description: 'Password of the file',
       },
       o: {
         alias: 'outdir',
@@ -78,18 +75,26 @@ yargs.command(
       } else console.log('Decryption succeed.');
     }
     if (fs.existsSync(argv.f)) {
-      let result: number;
-      if (argv.o === '') {
-        result = decFiles(argv.f, argv.p);
-        check(result);
-      } else {
-        if (fs.existsSync(argv.o)) {
-          result = decFiles(argv.f, argv.p, argv.o);
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      });
+      rl.question('Enter the password: ', (answer) => {
+        let result: number;
+        if (argv.o === '') {
+          result = decFiles(argv.f, answer);
           check(result);
         } else {
-          console.log('ERROR: ' + argv.o + " doesn't exists");
+          if (fs.existsSync(argv.o)) {
+            result = decFiles(argv.f, answer, argv.o);
+            check(result);
+          } else {
+            console.log('ERROR: ' + argv.o + " doesn't exists");
+          }
         }
-      }
+
+        rl.close();
+      });
     } else console.log('ERROR: ' + argv.f + " doesn't exists");
   }
 );
