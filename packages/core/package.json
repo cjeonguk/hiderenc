@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cjeonguk/hider/packages/core.git",
+    "url": "https://github.com/cjeonguk/hider.git",
     "directory": "packages/core"
   },
   "homepage": "https://github.com/cjeonguk/hider/packages/core#readme",
