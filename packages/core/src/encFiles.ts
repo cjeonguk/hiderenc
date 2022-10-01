@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import {
   writeFileSync,
+  appendFileSync,
   createReadStream,
   createWriteStream,
   unlinkSync,
@@ -44,4 +45,9 @@ export default (
       unlinkSync(filePaths[i] + '.encf');
     });
   }
+  appendFileSync(
+    resolve(homedir(), '.hider.log'),
+    `${resultFilePath}\n`,
+    'utf8'
+  );
 };

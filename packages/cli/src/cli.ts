@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import yargs from 'yargs';
 import fs from 'fs';
+import os from 'os';
+import path from 'path';
 import { encFiles, decFiles } from '@cjeonguk/hider';
 
 yargs.scriptName('hider');
@@ -91,5 +93,11 @@ yargs.command(
     } else console.log('ERROR: ' + argv.f + " doesn't exists");
   }
 );
+
+yargs.command('log', 'Show encryption log', {}, () => {
+  if (fs.existsSync(path.join(os.homedir(), '.hider.log')))
+    console.log(fs.readFileSync(path.join(os.homedir(), '.hider.log'), 'utf8'));
+  else console.log('No log exists.');
+});
 
 yargs.parseSync();
