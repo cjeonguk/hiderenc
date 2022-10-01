@@ -1,3 +1,15 @@
+# [3.3.0](https://github.com/cjeonguk/hider/compare/v3.2.0...v3.3.0) (2022-10-01)
+
+
+### Bug Fixes
+
+* **packages/*:** Fix repository url ([9853306](https://github.com/cjeonguk/hider/commit/985330635f1e299d735a66eeea4e260612b8a228))
+
+
+### Features
+
+* **core:** Add encryption log support ([1834fd0](https://github.com/cjeonguk/hider/commit/1834fd0e87b4276740441d589bdf136945fe81bf))
+
 # [3.2.0](https://github.com/cjeonguk/hider/compare/v3.1.0...v3.2.0) (2022-09-24)
 
 
