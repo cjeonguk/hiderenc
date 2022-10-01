@@ -65,9 +65,7 @@
       "license": "../LICENSE",
       "perMachine": true,
       "oneClick": false,
-      "runAfterFinish": false,
-      "installerIcon": "build/256x256.png",
-      "uninstallerIcon": "build/256x256.png"
+      "runAfterFinish": false
     },
     "mac": {
       "target": "dmg",

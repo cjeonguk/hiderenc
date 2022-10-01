@@ -52,9 +52,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Build
-        run: |
-          yarn build
-          ./.github/scripts/build.sh
+        run: ./scripts/build.sh
   test:
     name: Test
     runs-on: ubuntu-latest

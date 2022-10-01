@@ -69,7 +69,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "./.github/scripts/build.sh"
+          "prepareCmd": "./scripts/build.sh"
         }
       ],
       [
