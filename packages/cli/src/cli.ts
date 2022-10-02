@@ -18,19 +18,33 @@ yargs.command(
         demandOption: true,
         description: 'Paths of files to encrypt',
       },
+      p: {
+        alias: 'password',
+        type: 'string',
+        default: '',
+        description: 'Password of the file to decrypt',
+      },
       o: {
         alias: 'output',
         type: 'string',
         default: '',
         description: 'Path of the output file',
       },
+      l: {
+        alias: 'log',
+        type: 'boolean',
+        default: true,
+        description: 'Write log or not',
+      },
+      d: {
+        alias: 'delete',
+        type: 'boolean',
+        default: false,
+        description: 'Delete original file or not',
+      },
     }),
   (argv) => {
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-    rl.question('Enter the password: ', (answer) => {
+    function work(answer: string) {
       const filenames: string[] = [];
       for (let i = 0; i < argv.f.length; i++) {
         if (fs.existsSync(argv.f[i].toString()))
@@ -38,14 +52,28 @@ yargs.command(
         else console.log('ERROR: ' + argv.f[i] + " doesn't exists");
       }
       if (argv.o === '') {
-        encFiles(filenames, answer, 'encrypted.enc');
+        encFiles(filenames, answer, 'encrypted.enc', argv.l);
       } else {
-        encFiles(filenames, answer, argv.o);
+        encFiles(filenames, answer, argv.o, argv.l);
       }
       console.log('Encryption succeed.');
+      if (argv.d) {
+        for (let i = 0; i < filenames.length; i++) {
+          setTimeout(() => fs.unlinkSync(filenames[i]), 100);
+        }
+      }
+    }
+    if (argv.p === '') {
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      });
+      rl.question('Enter the password: ', (answer) => {
+        work(answer);
 
-      rl.close();
-    });
+        rl.close();
+      });
+    } else work(argv.p);
   }
 );
 yargs.command(
@@ -59,11 +87,23 @@ yargs.command(
         demandOption: true,
         description: 'Path of the file to decrypt',
       },
+      p: {
+        alias: 'password',
+        type: 'string',
+        default: '',
+        description: 'Password of the file to decrypt',
+      },
       o: {
         alias: 'outdir',
         type: 'string',
         default: '',
         description: 'Directory to save output files',
+      },
+      d: {
+        alias: 'delete',
+        type: 'boolean',
+        default: false,
+        description: 'Delete original file or not',
       },
     }),
   (argv) => {
@@ -74,27 +114,33 @@ yargs.command(
         console.log('ERROR: ' + argv.f + "wasn't encrypted yet");
       } else console.log('Decryption succeed.');
     }
-    if (fs.existsSync(argv.f)) {
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-      });
-      rl.question('Enter the password: ', (answer) => {
-        let result: number;
-        if (argv.o === '') {
-          result = decFiles(argv.f, answer);
+    function work(answer: string) {
+      let result: number;
+      if (argv.o === '') {
+        result = decFiles(argv.f, answer);
+        check(result);
+      } else {
+        if (fs.existsSync(argv.o)) {
+          result = decFiles(argv.f, answer, argv.o);
           check(result);
         } else {
-          if (fs.existsSync(argv.o)) {
-            result = decFiles(argv.f, answer, argv.o);
-            check(result);
-          } else {
-            console.log('ERROR: ' + argv.o + " doesn't exists");
-          }
+          console.log('ERROR: ' + argv.o + " doesn't exists");
         }
+      }
+    }
+    if (fs.existsSync(argv.f)) {
+      if (argv.p === '') {
+        const rl = readline.createInterface({
+          input: process.stdin,
+          output: process.stdout,
+        });
+        rl.question('Enter the password: ', (answer) => {
+          work(answer);
 
-        rl.close();
-      });
+          rl.close();
+        });
+      } else work(argv.p);
+      if (argv.d) fs.unlinkSync(argv.f);
     } else console.log('ERROR: ' + argv.f + " doesn't exists");
   }
 );
