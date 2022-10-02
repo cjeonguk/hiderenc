@@ -1,4 +1,4 @@
-name: Test
+name: CI
 on:
   pull_request:
   push:
@@ -38,6 +38,21 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Fmt
         run: yarn fmt
+  build:
+    name: Build
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build
+        run: ./scripts/build.sh
   build-macos:
     name: Build (macOS)
     runs-on: macos-latest

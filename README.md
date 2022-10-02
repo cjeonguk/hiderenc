@@ -5,6 +5,9 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/cjeonguk/hider/actions/workflows/ci.yml">
+    <img src="https://github.com/cjeonguk/hider/actions/workflows/ci.yml/badge.svg">
+  </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/github/license/cjeonguk/hider">
   </a>
