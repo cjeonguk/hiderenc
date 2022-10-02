@@ -25,7 +25,8 @@ export default function SavePasswd() {
   const [openCheckPasswd, setOpenCheckPasswd] = useState(false);
   const [openNewPasswd, setOpenNewPasswd] = useState(false);
   const [openShowPasswd, setOpenShowPasswd] = useState(false);
-  const [getNewPasswd, setGetNewPasswd] = useState(true);
+  const [openRemovePasswd, setOpenRemovePasswd] = useState(false);
+  const [checkPasswdType, setCheckPasswdType] = useState('new');
   const [firstPasswdText, setFirstPasswdText] = useState('');
   const [checkPasswdText, setCheckPasswdText] = useState('');
   const [passwd, setPasswd] = useState('');
@@ -44,6 +45,9 @@ export default function SavePasswd() {
   }
   function handleShowPasswdClose() {
     setOpenShowPasswd(false);
+  }
+  function handleRemovePasswdClose() {
+    setOpenRemovePasswd(false);
   }
   function checkFileExists() {
     if (!window.ipcRenderer.sendSync('check-passwd-file-exists')) {
@@ -87,28 +91,42 @@ export default function SavePasswd() {
     );
     handleNewPasswdClose();
     setPasswd('');
+    setWhereToUse('');
     setNewPassword('');
+  }
+  function removePassword() {
+    window.ipcRenderer.send('remove-password', passwd, whereToUse);
+    handleRemovePasswdClose();
+    setPasswd('');
+    setWhereToUse('');
   }
   function newPasswd() {
     if (checkFileExists()) {
-      setGetNewPasswd(true);
+      setCheckPasswdType('new');
       setCheckPasswdText('Check the password is correct.');
       setOpenCheckPasswd(true);
     }
   }
   function afterCheck() {
     if (checkPasswdCorrect()) {
-      if (getNewPasswd) setOpenNewPasswd(true);
-      else {
+      if (checkPasswdType === 'new') setOpenNewPasswd(true);
+      else if (checkPasswdType === 'show') {
         setPasswordList(window.ipcRenderer.sendSync('read-passwords', passwd));
         setPasswd('');
         setOpenShowPasswd(true);
-      }
+      } else if (checkPasswdType === 'remove') setOpenRemovePasswd(true);
     }
   }
   function showPasswords() {
     if (checkFileExists()) {
-      setGetNewPasswd(false);
+      setCheckPasswdType('show');
+      setCheckPasswdText('Check the password is correct.');
+      setOpenCheckPasswd(true);
+    }
+  }
+  function removePasswordStart() {
+    if (checkFileExists()) {
+      setCheckPasswdType('remove');
       setCheckPasswdText('Check the password is correct.');
       setOpenCheckPasswd(true);
     }
@@ -120,6 +138,9 @@ export default function SavePasswd() {
       </Button>
       <Button fullWidth color="secondary" onClick={showPasswords}>
         Passwords
+      </Button>
+      <Button fullWidth color="secondary" onClick={removePasswordStart}>
+        Remove Password
       </Button>
       <Dialog
         open={openFirstPasswd}
@@ -254,6 +275,34 @@ export default function SavePasswd() {
         <DialogActions>
           <Button onClick={handleShowPasswdClose} color="primary">
             Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        fullScreen
+        open={openRemovePasswd}
+        onClose={handleRemovePasswdClose}
+      >
+        <DialogTitle>Remove Password</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Write &lsquo;Where to use&rsquo; of the one you want to remove.
+          </DialogContentText>
+          <TextField
+            variant="standard"
+            autoFocus
+            label="Where to use"
+            fullWidth
+            margin="dense"
+            onChange={(e) => setWhereToUse(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button color="secondary" onClick={handleRemovePasswdClose}>
+            Cancel
+          </Button>
+          <Button color="primary" onClick={removePassword}>
+            Remove
           </Button>
         </DialogActions>
       </Dialog>

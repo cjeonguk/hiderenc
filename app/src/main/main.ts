@@ -9,6 +9,7 @@ import {
   checkPasswd,
   recordNewPasswd,
   readPasswds,
+  removePasswd,
 } from '@cjeonguk/hider';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -191,9 +192,30 @@ ipcMain.on(
   'record-new-passwd',
   (event, passwd: string, whereToUse: string, newPasswd: string) => {
     recordNewPasswd(whereToUse, newPasswd, passwd);
+    dialog.showMessageBox(mainWindow, {
+      title: 'Success',
+      message: 'The password is recorded.',
+    });
   }
 );
 
 ipcMain.on('read-passwords', async (event, passwd: string) => {
   event.returnValue = await readPasswds(passwd);
 });
+
+ipcMain.on(
+  'remove-password',
+  async (event, password: string, whereToUse: string) => {
+    if (await removePasswd(whereToUse, password)) {
+      dialog.showMessageBox(mainWindow, {
+        title: 'Success',
+        message: 'The password is removed.',
+      });
+    } else {
+      dialog.showErrorBox(
+        'Error',
+        `The password of ${whereToUse} doesn't exists.`
+      );
+    }
+  }
+);
