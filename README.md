@@ -1,7 +1,11 @@
 # Hider
 
 <p align="center">
-  <img src="./app/build/256x256.png" width="256" height="256">
+  <img src="./app/build/256x256.png" width="256" height="256" alt="hider">
+</p>
+
+<p align="center">
+  <i>Make your files unreadable</i>
 </p>
 
 <p align="center">
@@ -19,4 +23,16 @@
   </a>
 </p>
 
-**Tool to encrypt and decrypt your files**
+**Hider is a tool to encrypt/decrypt files.**
+
+## Usage
+
+- Encrypt files
+- Decrypt files
+- Record your passwords secretly
+
+## License
+
+Hider is distributed under the MIT License.
+
+See [LICENSE](LICENSE) for details.
