@@ -13,7 +13,8 @@ import { homedir } from 'os';
 export default (
   filePaths: string[],
   password: string,
-  resultFilePath = resolve(homedir(), 'encrypted.enc')
+  resultFilePath = resolve(homedir(), 'encrypted.enc'),
+  writeLog = true
 ) => {
   const salt = crypto.randomBytes(16);
   const iv = crypto.randomBytes(16);
@@ -45,9 +46,11 @@ export default (
       unlinkSync(filePaths[i] + '.encf');
     });
   }
-  appendFileSync(
-    resolve(homedir(), '.hider.log'),
-    `${resultFilePath}\n`,
-    'utf8'
-  );
+  if (writeLog) {
+    appendFileSync(
+      resolve(homedir(), '.hider.log'),
+      `${resultFilePath}\n`,
+      'utf8'
+    );
+  }
 };

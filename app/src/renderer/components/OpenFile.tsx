@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
   Button,
-  ButtonGroup,
-  Box,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -53,30 +51,13 @@ export default function OpenFile() {
   }
 
   return (
-    <div id="open-file">
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        id="open-file-box"
-      >
-        <ButtonGroup variant="contained">
-          <Button
-            size="large"
-            onClick={() => openFile(true)}
-            id="open-file-btn1"
-          >
-            Encrypt
-          </Button>
-          <Button
-            size="large"
-            onClick={() => openFile(false)}
-            id="open-file-btn2"
-          >
-            Decrypt
-          </Button>
-        </ButtonGroup>
-      </Box>
+    <>
+      <Button onClick={() => openFile(true)} color="primary" fullWidth>
+        Encrypt
+      </Button>
+      <Button onClick={() => openFile(false)} color="primary" fullWidth>
+        Decrypt
+      </Button>
       <Dialog open={openDialog} onClose={handleClose} fullScreen>
         <DialogTitle>Password</DialogTitle>
         <DialogContent>
@@ -95,10 +76,14 @@ export default function OpenFile() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={getPasswd}>Enter</Button>
+          <Button onClick={handleClose} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={getPasswd} color="primary">
+            Enter
+          </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }

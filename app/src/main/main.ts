@@ -3,7 +3,13 @@ import { autoUpdater } from 'electron-updater';
 import path from 'path';
 import os from 'os';
 import fs from 'fs';
-import { encFiles, decFiles } from '@cjeonguk/hider';
+import {
+  encFiles,
+  decFiles,
+  checkPasswd,
+  recordNewPasswd,
+  readPasswds,
+} from '@cjeonguk/hider';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -166,3 +172,26 @@ ipcMain.on(
     mainWindow.setProgressBar(-1);
   }
 );
+
+ipcMain.on('check-passwd-file-exists', (event) => {
+  event.returnValue = fs.existsSync(path.join(os.homedir(), '.hider.datas'));
+});
+
+ipcMain.on('write-first-data', (event, passwd: string) => {
+  encFiles([], passwd, path.join(os.homedir(), '.hider.datas'), false);
+});
+
+ipcMain.on('check-passwd-correct', (event, passwd: string) => {
+  event.returnValue = checkPasswd(passwd);
+});
+
+ipcMain.on(
+  'record-new-passwd',
+  (event, passwd: string, whereToUse: string, newPasswd: string) => {
+    recordNewPasswd(whereToUse, newPasswd, passwd);
+  }
+);
+
+ipcMain.on('read-passwords', async (event, passwd: string) => {
+  event.returnValue = await readPasswds(passwd);
+});
