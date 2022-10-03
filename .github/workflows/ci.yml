@@ -57,13 +57,13 @@ jobs:
       - name: Build
         run: yarn build
       - name: Dist (ubuntu)
-        if: Runner_OS == 'Linux'
+        if: ${{ env.Runner_OS }} == 'Linux'
         run: yarn dist:linux
       - name: Dist (windows)
-        if: RUNNER_OS == 'Windows'
+        if: ${{ env.Runner_OS }} == 'Windows'
         run: yarn dist:win
       - name: Dist (macOS)
-        if: RUNNER_OS == 'macOS'
+        if: ${{ env.Runner_OS }} == 'macOS'
         run: yarn dist:mac
   test:
     name: Test
