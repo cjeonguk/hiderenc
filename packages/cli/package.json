@@ -16,7 +16,7 @@
   "homepage": "https://github.com/cjeonguk/hider/packages/cli#readme",
   "scripts": {
     "build": "tsc -p ./tsconfig.json && swc ./src -d out",
-    "test": "tsc -p ./tsconfig.json"
+    "lint": "tsc -p ./tsconfig.json"
   },
   "dependencies": {
     "@cjeonguk/hider": "^1.0.0",

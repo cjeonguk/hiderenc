@@ -41,7 +41,7 @@
     "start:main": "tsc -p ./src/main && swc ./src/main -d out && wait-on http://localhost:3000/ && NODE_ENV=development electron .",
     "start:renderer": "tsc -p ./src/renderer && webpack serve",
     "start": "npm-run-all -p start:*",
-    "test": "tsc -p ./src/main && tsc -p ./src/renderer",
+    "lint": "tsc -p ./src/main && tsc -p ./src/renderer",
     "build": "swc ./src/main -d out && webpack --mode=production",
     "build:main": "tsc -p ./src/main && swc ./src/main -d out",
     "build:renderer": "tsc -p ./src/renderer && webpack --mode=production",
