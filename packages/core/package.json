@@ -18,6 +18,9 @@
   "dependencies": {
     "tar": "^6.1.11"
   },
+  "devDependencies": {
+    "@types/tar": "^6.1.3"
+  },
   "engines": {
     "node": ">=10"
   }
