@@ -22,7 +22,7 @@
     "@cjeonguk/hider": "^1.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.20",
+    "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@types/tar": "^6.1.2",
     "webpack": "^5.74.0",
