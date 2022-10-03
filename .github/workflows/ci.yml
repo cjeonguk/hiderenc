@@ -38,9 +38,12 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Fmt
         run: yarn fmt
-  build:
-    name: Build
-    runs-on: macos-latest
+  dist:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    name: Dist
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -52,58 +55,16 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Build
-        run: ./scripts/build.sh
-  build-macos:
-    name: Build (macOS)
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Build
-        run: |
-          yarn build
-          yarn dist:mac
-  build-win:
-    name: Build (Windows)
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Build
-        run: |
-          yarn build
-          yarn dist:win
-  build-linux:
-    name: Build (Linux)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Build
-        run: |
-          yarn build
-          yarn dist:linux
+        run: yarn build
+      - name: Dist (ubuntu)
+        if: jobs.dist.runs-on == ubuntu-latest
+        run: yarn dist:linux
+      - name: Dist (windows)
+        if: jobs.dist.runs-on == windows-latest
+        run: yarn dist:win
+      - name: Dist (macOS)
+        if: jobs.dist.runs-on == macos-latest
+        run: yarn dist:mac
   test:
     name: Test
     runs-on: ubuntu-latest
