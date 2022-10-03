@@ -57,13 +57,13 @@ jobs:
       - name: Build
         run: yarn build
       - name: Dist (ubuntu)
-        if: jobs.dist.runs-on == ubuntu-latest
+        if: Runner_OS == 'Linux'
         run: yarn dist:linux
       - name: Dist (windows)
-        if: jobs.dist.runs-on == windows-latest
+        if: RUNNER_OS == 'Windows'
         run: yarn dist:win
       - name: Dist (macOS)
-        if: jobs.dist.runs-on == macos-latest
+        if: RUNNER_OS == 'macOS'
         run: yarn dist:mac
   test:
     name: Test
