@@ -56,10 +56,10 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build
         run: yarn build
-      - name: Dist (ubuntu)
+      - name: Dist (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: yarn dist:linux
-      - name: Dist (windows)
+      - name: Dist (Windows)
         if: matrix.os == 'windows-latest'
         run: yarn dist:win
       - name: Dist (macOS)
