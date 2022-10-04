@@ -162,7 +162,6 @@ export default function SavePasswd() {
             }}
           />
           <TextField
-            autoFocus
             margin="dense"
             label="Write it again"
             type="password"
