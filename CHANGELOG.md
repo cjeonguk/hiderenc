@@ -1,25 +1,3 @@
-# [4.0.0](https://github.com/cjeonguk/hider/compare/v3.3.0...v4.0.0) (2022-10-04)
-
-
-### Bug Fixes
-
-* **cli:** Ask password (no args) ([48a1fc7](https://github.com/cjeonguk/hider/commit/48a1fc7d64a4954d2cf63520396155005bd1adf0))
-* **dev-deps:** Move @types/tar from app to core ([722dc16](https://github.com/cjeonguk/hider/commit/722dc16b403ddd79e509f50ca678f51f51eadcee))
-* **package.json:** Test -> Lint ([2f58173](https://github.com/cjeonguk/hider/commit/2f581735a218eeee3cb8f81153a1ff9994384a07))
-* **update:** Install after user quit the program ([f632084](https://github.com/cjeonguk/hider/commit/f6320844c464d8bae42f75101af54b909bd01385))
-
-
-### Features
-
-* **app:** Add a method to remove password ([aa8ead0](https://github.com/cjeonguk/hider/commit/aa8ead055ca15d91b181e9b51135415a6759370f))
-* **app:** Record passwords ([6a94753](https://github.com/cjeonguk/hider/commit/6a94753bd63c0ffe816fa67fec720d2ac6d61193))
-* **cli:** Add options ([893c9a0](https://github.com/cjeonguk/hider/commit/893c9a04c73364bfbb9eac8cd6010e234e7146fa))
-
-
-### BREAKING CHANGES
-
-* **app:** New big feature
-
 # [3.3.0](https://github.com/cjeonguk/hider/compare/v3.2.0...v3.3.0) (2022-10-01)
 
 
