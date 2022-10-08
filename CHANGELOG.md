@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/cjeonguk/hider/compare/v4.0.0...v4.0.1) (2022-10-08)
+
+
+### Bug Fixes
+
+* **app/renderer:** Remove unnecessary `autoFocus` ([2cc805e](https://github.com/cjeonguk/hider/commit/2cc805e39b71ed4bbe8975e690aefd649e47f6da))
+
 # [4.0.0](https://github.com/cjeonguk/hider/compare/v3.3.0...v4.0.0) (2022-10-04)
 
 
