@@ -16,13 +16,16 @@
     "typescript": "^4.8.4"
   },
   "workspaces": [
-    "app",
     "packages/core",
-    "packages/*"
+    "packages/*",
+    "app",
+    "web"
   ],
   "scripts": {
     "build": "yarn workspaces run build",
     "start": "yarn workspace hider start",
+    "start:web": "yarn workspace hider-web start",
+    "dev": "yarn workspace hider-web dev",
     "test": "echo \"No tests available\"",
     "lint": "yarn workspaces run lint && eslint \"app/src/**/*.{ts,tsx}\" packages/*/src/**/*.ts",
     "fmt": "prettier --check \"app/src/**/*.{ts,tsx}\" packages/*/src/**/*.ts",

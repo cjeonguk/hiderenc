@@ -1,0 +1,16 @@
+.Header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  border-bottom: 1px solid lightgray;
+  font-size: x-large;
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.Header * {
+  padding: 2px;
+}
