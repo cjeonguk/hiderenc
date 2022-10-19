@@ -77,10 +77,7 @@ autoUpdater.on('update-available', () => {
     message: 'Available updates exist.',
     title: 'Update',
     type: 'question',
-    buttons: [
-      'Not now',
-      'Download update (Install after you quit the program)',
-    ],
+    buttons: ['Not now', 'Download (Quit the program and Install)'],
     defaultId: 1,
   };
 
@@ -94,6 +91,7 @@ autoUpdater.on('download-progress', (progressObj) => {
 
 autoUpdater.on('update-downloaded', () => {
   mainWindow.setProgressBar(-1);
+  autoUpdater.quitAndInstall();
 });
 
 autoUpdater.on('error', (err) => {

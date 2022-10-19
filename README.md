@@ -30,6 +30,7 @@
 - Encrypt files
 - Decrypt files
 - Record your passwords secretly
+- Auto Update (In some cases, your antivirus software might cause an error.)
 
 ## License
 
