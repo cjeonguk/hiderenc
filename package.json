@@ -24,7 +24,7 @@
     "build": "yarn workspaces run build",
     "start": "yarn workspace hider start",
     "test": "echo \"No tests available\"",
-    "lint": "yarn workspaces run lint && eslint \"app/src/**/*.{ts,tsx}\" packages/*/src/**/*.ts",
+    "lint": "yarn workspaces run lint",
     "fmt": "prettier --check \"app/src/**/*.{ts,tsx}\" packages/*/src/**/*.ts",
     "dist:win": "yarn workspace hider dist:win",
     "dist:mac": "yarn workspace hider dist:mac",
