@@ -5,6 +5,9 @@
   "author": "Jeonguk Choi",
   "main": "index.js",
   "license": "MIT",
+  "files": [
+    "out"
+  ],
   "bin": {
     "hider": "./out/cli.js"
   },

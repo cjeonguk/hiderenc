@@ -4,6 +4,9 @@
   "description": "Core package of Hider",
   "author": "Jeonguk Choi",
   "main": "./out/index.js",
+  "files": [
+    "out"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,6 +25,6 @@
     "@types/tar": "^6.1.3"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   }
 }
