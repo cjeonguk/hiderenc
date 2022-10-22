@@ -20,6 +20,9 @@
     "packages/core",
     "packages/*"
   ],
+  "engines": {
+    "node": ">=14.17"
+  },
   "scripts": {
     "build": "yarn workspaces run build",
     "start": "yarn workspace hider start",
