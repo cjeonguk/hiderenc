@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/cjeonguk/hiderenc/compare/v4.0.1...v4.0.2) (2022-10-22)
+
+
+### Bug Fixes
+
+* **autoUpdate:** Use quitandinstall ([0a6ccf3](https://github.com/cjeonguk/hiderenc/commit/0a6ccf3db2938b11a7bf6b4e48b5d71d3edbe6c4))
+
 ## [4.0.1](https://github.com/cjeonguk/hider/compare/v4.0.0...v4.0.1) (2022-10-08)
 
 
