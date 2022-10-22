@@ -24,4 +24,4 @@ jobs:
       - name: Publish (Core)
         run: yarn workspace @cjeonguk/hider publish
       - name: Publish (CLI)
-        run: yarn workspace @cjeonguk/cli publish
+        run: yarn workspace @cjeonguk/hider-cli publish
