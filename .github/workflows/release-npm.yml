@@ -23,5 +23,9 @@ jobs:
         run: yarn build
       - name: Publish (Core)
         run: yarn workspace @cjeonguk/hider publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Publish (CLI)
         run: yarn workspace @cjeonguk/hider-cli publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
