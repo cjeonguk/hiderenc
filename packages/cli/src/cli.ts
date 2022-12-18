@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 import yargs from 'yargs';
 import fs from 'fs';
-import os from 'os';
-import path from 'path';
 import readline from 'readline';
 import { encFiles, decFiles } from '@cjeonguk/hider';
 
@@ -30,12 +28,6 @@ yargs.command(
         default: '',
         description: 'Path of the output file',
       },
-      l: {
-        alias: 'log',
-        type: 'boolean',
-        default: true,
-        description: 'Write log or not',
-      },
       d: {
         alias: 'delete',
         type: 'boolean',
@@ -52,9 +44,9 @@ yargs.command(
         else console.log('ERROR: ' + argv.f[i] + " doesn't exists");
       }
       if (argv.o === '') {
-        encFiles(filenames, answer, 'encrypted.enc', argv.l);
+        encFiles(filenames, answer, 'encrypted.enc');
       } else {
-        encFiles(filenames, answer, argv.o, argv.l);
+        encFiles(filenames, answer, argv.o);
       }
       console.log('Encryption succeed.');
       if (argv.d) {
@@ -144,11 +136,5 @@ yargs.command(
     } else console.log('ERROR: ' + argv.f + " doesn't exists");
   }
 );
-
-yargs.command('log', 'Show encryption log', {}, () => {
-  if (fs.existsSync(path.join(os.homedir(), '.hider.log')))
-    console.log(fs.readFileSync(path.join(os.homedir(), '.hider.log'), 'utf8'));
-  else console.log('No log exists.');
-});
 
 yargs.parseSync();

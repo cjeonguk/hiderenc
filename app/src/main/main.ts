@@ -179,7 +179,7 @@ ipcMain.on('check-passwd-file-exists', (event) => {
 });
 
 ipcMain.on('write-first-data', (event, passwd: string) => {
-  encFiles([], passwd, path.join(os.homedir(), '.hider.datas'), false);
+  encFiles([], passwd, path.join(os.homedir(), '.hider.datas'));
 });
 
 ipcMain.on('check-passwd-correct', (event, passwd: string) => {

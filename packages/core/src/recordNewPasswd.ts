@@ -14,8 +14,7 @@ export default (whereToUse: string, newPassword: string, password: string) => {
     encFiles(
       [path.join(os.homedir(), '.hider.tmp')],
       password,
-      path.join(os.homedir(), '.hider.datas'),
-      false
+      path.join(os.homedir(), '.hider.datas')
     );
     setTimeout(() => fs.unlinkSync(path.join(os.homedir(), '.hider.tmp')), 100);
   }, 100);
