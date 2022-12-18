@@ -13,7 +13,7 @@
   "homepage": "https://github.com/cjeonguk/hider#readme",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.10.4",
+    "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.10",
     "electron-updater": "^5.3.0",
