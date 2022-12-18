@@ -133,13 +133,13 @@ export default function SavePasswd() {
   }
   return (
     <>
-      <Button fullWidth color="secondary" onClick={newPasswd}>
+      <Button fullWidth onClick={newPasswd}>
         New Password
       </Button>
-      <Button fullWidth color="secondary" onClick={showPasswords}>
+      <Button fullWidth onClick={showPasswords}>
         Passwords
       </Button>
-      <Button fullWidth color="secondary" onClick={removePasswordStart}>
+      <Button fullWidth onClick={removePasswordStart}>
         Remove Password
       </Button>
       <Dialog
@@ -173,12 +173,8 @@ export default function SavePasswd() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleFirstPasswdClose} color="secondary">
-            Cancel
-          </Button>
-          <Button onClick={checkPasswdSame} color="primary">
-            Save
-          </Button>
+          <Button onClick={handleFirstPasswdClose}>Cancel</Button>
+          <Button onClick={checkPasswdSame}>Save</Button>
         </DialogActions>
       </Dialog>
       <Dialog
@@ -202,12 +198,8 @@ export default function SavePasswd() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCheckPasswdClose} color="secondary">
-            Cancel
-          </Button>
-          <Button onClick={afterCheck} color="primary">
-            Enter
-          </Button>
+          <Button onClick={handleCheckPasswdClose}>Cancel</Button>
+          <Button onClick={afterCheck}>Enter</Button>
         </DialogActions>
       </Dialog>
       <Dialog open={openNewPasswd} onClose={handleNewPasswdClose} fullScreen>
@@ -236,12 +228,8 @@ export default function SavePasswd() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleNewPasswdClose} color="secondary">
-            Cancel
-          </Button>
-          <Button onClick={recordNewPasswd} color="primary">
-            Record
-          </Button>
+          <Button onClick={handleNewPasswdClose}>Cancel</Button>
+          <Button onClick={recordNewPasswd}>Record</Button>
         </DialogActions>
       </Dialog>
       <Dialog open={openShowPasswd} onClose={handleShowPasswdClose} fullScreen>
@@ -272,9 +260,7 @@ export default function SavePasswd() {
           </TableContainer>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleShowPasswdClose} color="primary">
-            Close
-          </Button>
+          <Button onClick={handleShowPasswdClose}>Close</Button>
         </DialogActions>
       </Dialog>
       <Dialog
@@ -297,12 +283,8 @@ export default function SavePasswd() {
           />
         </DialogContent>
         <DialogActions>
-          <Button color="secondary" onClick={handleRemovePasswdClose}>
-            Cancel
-          </Button>
-          <Button color="primary" onClick={removePassword}>
-            Remove
-          </Button>
+          <Button onClick={handleRemovePasswdClose}>Cancel</Button>
+          <Button onClick={removePassword}>Remove</Button>
         </DialogActions>
       </Dialog>
     </>

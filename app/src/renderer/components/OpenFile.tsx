@@ -52,10 +52,10 @@ export default function OpenFile() {
 
   return (
     <>
-      <Button onClick={() => openFile(true)} color="primary" fullWidth>
+      <Button onClick={() => openFile(true)} fullWidth>
         Encrypt
       </Button>
-      <Button onClick={() => openFile(false)} color="primary" fullWidth>
+      <Button onClick={() => openFile(false)} fullWidth>
         Decrypt
       </Button>
       <Dialog open={openDialog} onClose={handleClose} fullScreen>
@@ -76,12 +76,8 @@ export default function OpenFile() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="secondary">
-            Cancel
-          </Button>
-          <Button onClick={getPasswd} color="primary">
-            Enter
-          </Button>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={getPasswd}>Enter</Button>
         </DialogActions>
       </Dialog>
     </>
