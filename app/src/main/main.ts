@@ -101,9 +101,7 @@ autoUpdater.on('error', (err) => {
 ipcMain.on('open-file', (event, encrypt) => {
   const selectedFiles = dialog.showOpenDialogSync({
     defaultPath: os.homedir(),
-    properties: encrypt
-      ? ['openDirectory', 'openFile', 'multiSelections']
-      : ['openFile'],
+    properties: encrypt ? ['openFile', 'multiSelections'] : ['openFile'],
   });
   event.returnValue = selectedFiles;
 });
@@ -150,14 +148,14 @@ ipcMain.on(
           title: 'Information',
           message: 'Encryption succeed.',
         };
-        dialog.showMessageBoxSync(mainWindow, options);
+        dialog.showMessageBox(mainWindow, options);
       }
     } else {
       const outputPath = dialog.showOpenDialogSync({
         defaultPath: os.homedir(),
         properties: ['openDirectory'],
       });
-      const result = decFiles(filePaths[0], passwd, outputPath);
+      const result = decFiles(filePaths[0], passwd, outputPath?.pop());
       if (result === 1) dialog.showErrorBox('ERROR', 'Wrong password');
       else if (result === 2) dialog.showErrorBox('ERROR', 'Not encrypted yet');
       else {
@@ -166,7 +164,7 @@ ipcMain.on(
           title: 'Information',
           message: 'Decryption succeed.',
         };
-        dialog.showMessageBoxSync(mainWindow, options);
+        dialog.showMessageBox(mainWindow, options);
       }
     }
     mainWindow.setProgressBar(-1);
