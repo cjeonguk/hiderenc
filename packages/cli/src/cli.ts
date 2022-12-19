@@ -25,7 +25,7 @@ yargs.command(
       o: {
         alias: 'output',
         type: 'string',
-        default: '',
+        default: './encrypted.enc',
         description: 'Path of the output file',
       },
       d: {
@@ -43,11 +43,7 @@ yargs.command(
           filenames.push(argv.f[i].toString());
         else console.log('ERROR: ' + argv.f[i] + " doesn't exists");
       }
-      if (argv.o === '') {
-        encFiles(filenames, answer, 'encrypted.enc');
-      } else {
-        encFiles(filenames, answer, argv.o);
-      }
+      encFiles(filenames, answer, argv.o);
       console.log('Encryption succeed.');
       if (argv.d) {
         for (let i = 0; i < filenames.length; i++) {
@@ -88,7 +84,7 @@ yargs.command(
       o: {
         alias: 'outdir',
         type: 'string',
-        default: '',
+        default: '.',
         description: 'Directory to save output files',
       },
       d: {
@@ -107,17 +103,11 @@ yargs.command(
       } else console.log('Decryption succeed.');
     }
     function work(answer: string) {
-      let result: number;
-      if (argv.o === '') {
-        result = decFiles(argv.f, answer);
+      if (fs.existsSync(argv.o)) {
+        const result = decFiles(argv.f, answer, argv.o);
         check(result);
       } else {
-        if (fs.existsSync(argv.o)) {
-          result = decFiles(argv.f, answer, argv.o);
-          check(result);
-        } else {
-          console.log('ERROR: ' + argv.o + " doesn't exists");
-        }
+        console.log('ERROR: ' + argv.o + " doesn't exists");
       }
     }
     if (fs.existsSync(argv.f)) {

@@ -6,6 +6,7 @@ import {
   createReadStream,
   createWriteStream,
   unlinkSync,
+  mkdirSync,
 } from 'fs';
 
 export default (
@@ -44,10 +45,18 @@ export default (
       unlinkSync(resolve(dirname(filePath), '.encd'));
       for (let i = 0; i < fileNames.length; i++) {
         if (fileNames[i] !== '.encd') {
+          if (dirname(fileNames[i]) !== '.')
+            mkdirSync(resolve(outputPath, dirname(fileNames[i])), {
+              recursive: true,
+            });
           const rs = createReadStream(resolve(dirname(filePath), fileNames[i]));
           rs.pipe(crypto.createDecipheriv('aes-256-cbc', key, iv)).pipe(
             createWriteStream(
-              resolve(outputPath, basename(fileNames[i], extname(fileNames[i])))
+              resolve(
+                outputPath,
+                dirname(fileNames[i]),
+                basename(fileNames[i], extname(fileNames[i]))
+              )
             )
           );
           rs.on('end', () => {
@@ -61,6 +70,7 @@ export default (
       return 1;
     }
   } catch (err) {
+    console.log(err);
     return 2;
   }
 };

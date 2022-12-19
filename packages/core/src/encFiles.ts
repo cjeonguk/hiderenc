@@ -4,9 +4,11 @@ import {
   createReadStream,
   createWriteStream,
   unlinkSync,
+  lstatSync,
+  readdirSync,
 } from 'fs';
 import tar from 'tar';
-import { basename, dirname, resolve } from 'path';
+import { dirname, resolve, relative } from 'path';
 import { homedir } from 'os';
 
 export default (
@@ -30,6 +32,30 @@ export default (
     { file: resultFilePath, sync: true, cwd: dirname(resultFilePath) },
     ['.encd']
   );
+  let rootdir = dirname(filePaths[0]);
+  for (let i = 1; i < filePaths.length; i++) {
+    let latestSlashIndex = 0;
+    for (
+      let j = 0;
+      j < filePaths[i].length &&
+      j < rootdir.length &&
+      Array.from(filePaths)[i][j] === Array.from(rootdir)[j];
+      j++
+    ) {
+      if (Array.from(rootdir)[j] === '/') latestSlashIndex = j;
+    }
+    rootdir = rootdir.slice(0, latestSlashIndex);
+  }
+  for (let i = 0; i < filePaths.length; i++) {
+    if (lstatSync(filePaths[i]).isDirectory()) {
+      const filesInDir = readdirSync(filePaths[i], 'utf8');
+      for (let j = 0; j < filesInDir.length; j++) {
+        filePaths.push(resolve(filePaths[i], filesInDir[j]));
+      }
+      filePaths.splice(i, 1);
+      i--;
+    }
+  }
   unlinkSync(resolve(dirname(resultFilePath), '.encd'));
   for (let i = 0; i < filePaths.length; i++) {
     const rs = createReadStream(filePaths[i]);
@@ -37,10 +63,9 @@ export default (
       createWriteStream(filePaths[i] + '.encf')
     );
     rs.on('end', () => {
-      tar.update(
-        { file: resultFilePath, sync: true, cwd: dirname(filePaths[i]) },
-        [basename(filePaths[i]) + '.encf']
-      );
+      tar.update({ file: resultFilePath, sync: true, cwd: rootdir }, [
+        relative(rootdir, filePaths[i]) + '.encf',
+      ]);
       unlinkSync(filePaths[i] + '.encf');
     });
   }
