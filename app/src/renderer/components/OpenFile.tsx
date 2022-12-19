@@ -36,7 +36,10 @@ export default function OpenFile() {
   }
 
   function openFile(encryptOrNot: boolean) {
-    const selectedFiles = window.ipcRenderer.sendSync('open-file');
+    const selectedFiles = window.ipcRenderer.sendSync(
+      'open-file',
+      encryptOrNot
+    );
 
     if (selectedFiles !== undefined) {
       setFilePaths(JSON.parse(JSON.stringify(selectedFiles)));
