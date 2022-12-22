@@ -53,7 +53,7 @@
   },
   "build": {
     "appId": "com.electron.hider",
-    "electronVersion": "21.0.1",
+    "electronVersion": "22.0.0",
     "productName": "Hider",
     "artifactName": "${name}-v${version}-${os}-${arch}.${ext}",
     "win": {
