@@ -1,3 +1,18 @@
+# [4.1.0](https://github.com/cjeonguk/hiderenc/compare/v4.0.2...v4.1.0) (2022-12-30)
+
+
+### Bug Fixes
+
+* **app:** Select files specifically ([a14eaf0](https://github.com/cjeonguk/hiderenc/commit/a14eaf099d208cefb2ba9fa6dc4e3ef85d3f07d4))
+* **core:** Remove logging ([100fe41](https://github.com/cjeonguk/hiderenc/commit/100fe419777d9448382f5455f1a2dddc2ecfc68b))
+* **main:** Fix undefined error ([39c0449](https://github.com/cjeonguk/hiderenc/commit/39c0449d3d2ef2bdd6298269ebb9c7ceb7c30c3c))
+* **renderer:** Remove styles and add dark mode ([92888ed](https://github.com/cjeonguk/hiderenc/commit/92888ed3aeca8cd4277e3670ac3f52a2c5b9c685))
+
+
+### Features
+
+* **core:** Add updating method && folder reading ([9a7bffd](https://github.com/cjeonguk/hiderenc/commit/9a7bffd23eb6b1210e8c32fb0cf61789dcf7b804))
+
 ## [4.0.2](https://github.com/cjeonguk/hiderenc/compare/v4.0.1...v4.0.2) (2022-10-22)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "hider",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "description": "GUI tool to encrypt&decrypt files",
   "main": "out/main/main.js",
   "author": "Jeonguk Choi",
