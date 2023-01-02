@@ -47,6 +47,10 @@
             {
               "scope": "cli",
               "release": false
+            },
+            {
+              "scope": "core",
+              "release": false
             }
           ]
         }
