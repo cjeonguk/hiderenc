@@ -15,6 +15,8 @@ import {
   TableRow,
   Paper,
 } from '@mui/material';
+import GetPasswd from './GetPasswd';
+import NewPasswd from './NewPasswd';
 
 export default function SavePasswd() {
   interface PasswdInfo {
@@ -142,96 +144,32 @@ export default function SavePasswd() {
       <Button fullWidth onClick={removePasswordStart}>
         Remove Password
       </Button>
-      <Dialog
-        open={openFirstPasswd}
-        onClose={handleFirstPasswdClose}
-        fullScreen
-      >
-        <DialogTitle>New password</DialogTitle>
-        <DialogContent>
-          <DialogContentText>{firstPasswdText}</DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="A new password"
-            type="password"
-            fullWidth
-            variant="standard"
-            onChange={(e) => {
-              setPasswd(e.target.value);
-            }}
-          />
-          <TextField
-            margin="dense"
-            label="Write it again"
-            type="password"
-            fullWidth
-            variant="standard"
-            onChange={(e) => {
-              setAgainPasswd(e.target.value);
-            }}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleFirstPasswdClose}>Cancel</Button>
-          <Button onClick={checkPasswdSame}>Save</Button>
-        </DialogActions>
-      </Dialog>
-      <Dialog
-        open={openCheckPasswd}
-        onClose={handleCheckPasswdClose}
-        fullScreen
-      >
-        <DialogTitle>Password</DialogTitle>
-        <DialogContent>
-          <DialogContentText>{checkPasswdText}</DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Password"
-            type="password"
-            fullWidth
-            variant="standard"
-            onChange={(e) => {
-              setPasswd(e.target.value);
-            }}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCheckPasswdClose}>Cancel</Button>
-          <Button onClick={afterCheck}>Enter</Button>
-        </DialogActions>
-      </Dialog>
-      <Dialog open={openNewPasswd} onClose={handleNewPasswdClose} fullScreen>
-        <DialogTitle>New password</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Record a new password and where to use it
-          </DialogContentText>
-          <TextField
-            variant="standard"
-            autoFocus
-            label="Where to use"
-            fullWidth
-            margin="dense"
-            onChange={(e) => setWhereToUse(e.target.value)}
-          />
-          <TextField
-            margin="dense"
-            label="Password"
-            type="password"
-            fullWidth
-            variant="standard"
-            onChange={(e) => {
-              setNewPassword(e.target.value);
-            }}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleNewPasswdClose}>Cancel</Button>
-          <Button onClick={recordNewPasswd}>Record</Button>
-        </DialogActions>
-      </Dialog>
+      <NewPasswd
+        openDialog={openFirstPasswd}
+        cancel={handleFirstPasswdClose}
+        contentText={firstPasswdText}
+        nextAct={checkPasswdSame}
+        firstTextFieldFunc={setPasswd}
+        secondTextFieldFunc={setAgainPasswd}
+      />
+      <GetPasswd
+        openDialog={openCheckPasswd}
+        cancel={handleCheckPasswdClose}
+        setPasswd={setPasswd}
+        contentText={checkPasswdText}
+        nextAct={afterCheck}
+      />
+      <NewPasswd
+        openDialog={openNewPasswd}
+        cancel={handleNewPasswdClose}
+        contentText="Record a new password and where to use it"
+        nextAct={recordNewPasswd}
+        firstTextFieldLabel="Where to use"
+        firstTextFieldType="text"
+        firstTextFieldFunc={setWhereToUse}
+        secondTextFieldLabel="Password"
+        secondTextFieldFunc={setNewPassword}
+      />
       <Dialog open={openShowPasswd} onClose={handleShowPasswdClose} fullScreen>
         <DialogTitle>Passwords</DialogTitle>
         <DialogContent>

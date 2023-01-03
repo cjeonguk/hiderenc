@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  TextField,
-  DialogActions,
-} from '@mui/material';
+import { Button } from '@mui/material';
+import GetPasswd from './GetPasswd';
 
 export default function OpenFile() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -27,7 +20,10 @@ export default function OpenFile() {
     }
   }, []);
 
+  let contentText = 'Type the password to use for ';
   function handleClickOpen() {
+    if (encrypt) contentText += 'encryption';
+    else contentText += 'decryption';
     setOpenDialog(true);
   }
 
@@ -61,28 +57,13 @@ export default function OpenFile() {
       <Button onClick={() => openFile(false)} fullWidth>
         Decrypt
       </Button>
-      <Dialog open={openDialog} onClose={handleClose} fullScreen>
-        <DialogTitle>Password</DialogTitle>
-        <DialogContent>
-          <DialogContentText>Enter your password:</DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="passwd"
-            label="Password"
-            type="password"
-            fullWidth
-            variant="standard"
-            onChange={(e) => {
-              setPasswd(e.target.value);
-            }}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={getPasswd}>Enter</Button>
-        </DialogActions>
-      </Dialog>
+      <GetPasswd
+        openDialog={openDialog}
+        cancel={handleClose}
+        setPasswd={setPasswd}
+        nextAct={getPasswd}
+        contentText={contentText}
+      />
     </>
   );
 }
