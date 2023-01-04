@@ -67,8 +67,12 @@ export default function NewPasswd(props: NewPasswdProps) {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.cancel}>Cancel</Button>
-        <Button onClick={props.nextAct}>Save</Button>
+        <Button onClick={props.cancel} size="large">
+          Cancel
+        </Button>
+        <Button onClick={props.nextAct} size="large">
+          Save
+        </Button>
       </DialogActions>
     </Dialog>
   );

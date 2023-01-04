@@ -17,9 +17,27 @@ export default function App() {
   const theme = React.useMemo(
     () =>
       createTheme({
-        palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-        },
+        palette: !prefersDarkMode
+          ? {
+              mode: 'light',
+              primary: {
+                main: '#1976d2',
+              },
+              background: {
+                default: '#fff',
+                paper: '#fff',
+              },
+            }
+          : {
+              mode: 'dark',
+              primary: {
+                main: '#757575',
+              },
+              background: {
+                default: '#212121',
+                paper: '#212121',
+              },
+            },
       }),
     [prefersDarkMode]
   );
@@ -27,14 +45,27 @@ export default function App() {
     <div id="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container>
-          <Box display="flex" justifyContent="center" alignItems="center">
+        <Container id="container">
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            id="box"
+          >
             <ButtonGroup
               orientation="vertical"
               variant="contained"
               size="large"
+              className="btngroup"
             >
               <OpenFile />
+            </ButtonGroup>
+            <ButtonGroup
+              orientation="vertical"
+              variant="contained"
+              size="small"
+              className="btngroup"
+            >
               <SavePasswd />
             </ButtonGroup>
           </Box>

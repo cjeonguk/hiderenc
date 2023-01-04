@@ -1,0 +1,18 @@
+html,
+body,
+#root,
+#App,
+#container,
+#box {
+  height: 100%;
+}
+
+#box {
+  flex-flow: column;
+}
+
+.btngroup {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  width: 100%;
+}

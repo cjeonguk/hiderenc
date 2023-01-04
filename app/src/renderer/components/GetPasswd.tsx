@@ -37,8 +37,12 @@ export default function GetPasswd(props: GetPasswdProps) {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.cancel}>Cancel</Button>
-        <Button onClick={props.nextAct}>Enter</Button>
+        <Button onClick={props.cancel} size="large">
+          Cancel
+        </Button>
+        <Button onClick={props.nextAct} size="large">
+          Enter
+        </Button>
       </DialogActions>
     </Dialog>
   );
