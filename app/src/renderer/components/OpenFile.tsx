@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@mui/material';
-import GetPasswd from './GetPasswd';
+const GetPasswd = React.lazy(() => import('./GetPasswd'));
 
 export default function OpenFile() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -8,17 +8,6 @@ export default function OpenFile() {
   // Update this to state with redux
   const [encrypt, setEncrypt] = useState(true);
   const [filePaths, setFilePaths] = useState<string[]>([]);
-
-  useEffect(() => {
-    const opened: boolean = window.ipcRenderer.sendSync('file-opened');
-    if (opened) {
-      const [filePath, isEncrypt]: [string, boolean] =
-        window.ipcRenderer.sendSync('get-file-path');
-      setFilePaths([filePath]);
-      setEncrypt(isEncrypt);
-      handleClickOpen();
-    }
-  }, []);
 
   let contentText = 'Type the password to use for ';
   function handleClickOpen() {

@@ -1,6 +1,6 @@
 import encFiles from './encFiles';
 import decFiles from './decFiles';
-import updateFiles from './updateFiles';
+import addFiles from './addFiles';
 import viewFilesInDir from './viewFilesInDir';
 import checkPasswd from './checkPasswd';
 import recordNewPasswd from './recordNewPasswd';
@@ -10,7 +10,7 @@ import removePasswd from './removePasswd';
 export {
   encFiles,
   decFiles,
-  updateFiles,
+  addFiles,
   viewFilesInDir,
   checkPasswd,
   recordNewPasswd,

@@ -6,6 +6,8 @@ import fs from 'fs';
 import {
   encFiles,
   decFiles,
+  addFiles,
+  viewFilesInDir,
   checkPasswd,
   recordNewPasswd,
   readPasswds,
@@ -110,17 +112,15 @@ ipcMain.on('file-opened', (event) => {
   if (
     process.argv.length >= 2 &&
     !isDev &&
-    fs.lstatSync(process.argv[1]).isFile()
+    fs.lstatSync(process.argv[1]).isFile() &&
+    !(path.extname(process.argv[1]) === '.enc')
   ) {
     event.returnValue = true;
   } else event.returnValue = false;
 });
 
 ipcMain.on('get-file-path', (event) => {
-  event.returnValue = [
-    process.argv[1],
-    !(path.extname(process.argv[1]) === '.enc'),
-  ];
+  event.returnValue = process.argv[1];
 });
 
 ipcMain.on(
@@ -146,7 +146,7 @@ ipcMain.on(
         const options = {
           type: 'info',
           title: 'Information',
-          message: 'Encryption succeed.',
+          message: 'Successfully encrypted.',
         };
         dialog.showMessageBox(mainWindow, options);
       }
@@ -162,7 +162,7 @@ ipcMain.on(
         const options = {
           type: 'info',
           title: 'Information',
-          message: 'Decryption succeed.',
+          message: 'Successfully decrypted.',
         };
         dialog.showMessageBox(mainWindow, options);
       }
@@ -170,6 +170,42 @@ ipcMain.on(
     mainWindow.setProgressBar(-1);
   }
 );
+
+function isArray<T>(value: T | undefined): value is T {
+  if (value === undefined) return false;
+  return true;
+}
+
+ipcMain.on('add-files', (event, filePath: string, passwd: string) => {
+  const selectedFiles = dialog.showOpenDialogSync({
+    defaultPath: os.homedir(),
+    properties: ['openFile', 'multiSelections'],
+  });
+  if (isArray(selectedFiles)) {
+    const options = {
+      type: 'info',
+      title: 'Information',
+      message: 'Successfully encrypted.',
+    };
+    switch (addFiles(filePath, passwd, selectedFiles)) {
+      case 0:
+        dialog.showMessageBox(mainWindow, options);
+        break;
+
+      case 1:
+        dialog.showErrorBox('ERROR', 'Wrong password');
+        break;
+
+      default:
+        dialog.showErrorBox('ERROR', 'Unknown error occured.');
+        break;
+    }
+  }
+});
+
+ipcMain.on('view-file', (event, filePath: string, relativePath: string) => {
+  event.returnValue = viewFilesInDir(filePath, relativePath);
+});
 
 ipcMain.on('check-passwd-file-exists', (event) => {
   event.returnValue = fs.existsSync(path.join(os.homedir(), '.hider.datas'));

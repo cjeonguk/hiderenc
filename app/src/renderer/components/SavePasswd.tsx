@@ -15,8 +15,8 @@ import {
   TableRow,
   Paper,
 } from '@mui/material';
-import GetPasswd from './GetPasswd';
-import NewPasswd from './NewPasswd';
+const GetPasswd = React.lazy(() => import('./GetPasswd'));
+const NewPasswd = React.lazy(() => import('./NewPasswd'));
 
 export default function SavePasswd() {
   interface PasswdInfo {
@@ -105,7 +105,7 @@ export default function SavePasswd() {
   function newPasswd() {
     if (checkFileExists()) {
       setCheckPasswdType('new');
-      setCheckPasswdText('Check the password is correct.');
+      setCheckPasswdText('Check if the password is correct.');
       setOpenCheckPasswd(true);
     }
   }
@@ -122,14 +122,14 @@ export default function SavePasswd() {
   function showPasswords() {
     if (checkFileExists()) {
       setCheckPasswdType('show');
-      setCheckPasswdText('Check the password is correct.');
+      setCheckPasswdText('Check if the password is correct.');
       setOpenCheckPasswd(true);
     }
   }
   function removePasswordStart() {
     if (checkFileExists()) {
       setCheckPasswdType('remove');
-      setCheckPasswdText('Check the password is correct.');
+      setCheckPasswdText('Check if the password is correct.');
       setOpenCheckPasswd(true);
     }
   }

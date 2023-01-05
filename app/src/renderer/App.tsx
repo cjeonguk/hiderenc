@@ -8,6 +8,7 @@ import {
   CssBaseline,
   Container,
 } from '@mui/material';
+const ViewFile = React.lazy(() => import('./components/ViewFile'));
 const OpenFile = React.lazy(() => import('./components/OpenFile'));
 const SavePasswd = React.lazy(() => import('./components/SavePasswd'));
 
@@ -59,6 +60,7 @@ export default function App() {
               className="btngroup"
             >
               <OpenFile />
+              <ViewFile />
             </ButtonGroup>
             <ButtonGroup
               orientation="vertical"

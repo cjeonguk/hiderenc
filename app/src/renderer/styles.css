@@ -16,3 +16,29 @@ body,
   margin-bottom: 2%;
   width: 100%;
 }
+
+.text-btn {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  text-align: left;
+  display: inline-block;
+}
+
+@media (prefers-color-scheme: light) {
+  .text-btn {
+    color: rgba(0, 0, 0, 0.87);
+  }
+  .text-btn:hover {
+    color: #1976d2;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .text-btn {
+    color: #fff;
+  }
+  .text-btn:hover {
+    color: #757575;
+  }
+}
