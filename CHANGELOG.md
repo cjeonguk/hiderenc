@@ -1,3 +1,16 @@
+# [4.2.0](https://github.com/cjeonguk/hiderenc/compare/v4.1.0...v4.2.0) (2023-01-07)
+
+
+### Features
+
+* **app:** Add file view ([0d0b91c](https://github.com/cjeonguk/hiderenc/commit/0d0b91c9d7b0777db3606111ebbdde4d29822650))
+* **core:** Add viewFilesInDir method ([7b39221](https://github.com/cjeonguk/hiderenc/commit/7b39221a575bc3151f74ccff313e366c97da6e25))
+
+
+### Reverts
+
+* **deps-dev:** bump @swc/cli from 0.1.57 to 0.1.59" ([#207](https://github.com/cjeonguk/hiderenc/issues/207)) ([7ad7cb9](https://github.com/cjeonguk/hiderenc/commit/7ad7cb93728d7500640f32847cb2d332b70cd89e))
+
 # [4.1.0](https://github.com/cjeonguk/hiderenc/compare/v4.0.2...v4.1.0) (2022-12-30)
 
 
