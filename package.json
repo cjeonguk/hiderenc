@@ -21,7 +21,7 @@
     "packages/*"
   ],
   "engines": {
-    "node": ">=14.17"
+    "node": ">=18"
   },
   "scripts": {
     "build": "yarn workspaces run build",
