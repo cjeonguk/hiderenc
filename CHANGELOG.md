@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/cjeonguk/hiderenc/compare/v4.2.0...v5.0.0) (2023-01-14)
+
+
+### Build System
+
+* **node:** Update node version to 18 ([3396793](https://github.com/cjeonguk/hiderenc/commit/3396793e8ef42cf2783eaa984184e08226de2567))
+
+
+### BREAKING CHANGES
+
+* **node:** Update node version
+
 # [4.2.0](https://github.com/cjeonguk/hiderenc/compare/v4.1.0...v4.2.0) (2023-01-07)
 
 
