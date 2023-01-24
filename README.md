@@ -23,13 +23,13 @@
   </a>
 </p>
 
-**Hider is a tool to encrypt/decrypt files.**
+**Hider is a tool to archive files with encryption.**
 
 ## Usage
 
-- Encrypt files
-- Decrypt files
-- Record your passwords secretly
+- **Encrypt multiple files**
+
+  \+ Record your passwords secretly
 - Auto Update (In some cases, your antivirus software might cause an error.)
 
 ## License
