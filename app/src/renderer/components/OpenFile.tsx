@@ -9,10 +9,8 @@ export default function OpenFile() {
   const [encrypt, setEncrypt] = useState(true);
   const [filePaths, setFilePaths] = useState<string[]>([]);
 
-  let contentText = 'Type the password to use for ';
+  const contentText = 'Type the password to use';
   function handleClickOpen() {
-    if (encrypt) contentText += 'encryption';
-    else contentText += 'decryption';
     setOpenDialog(true);
   }
 
@@ -21,12 +19,12 @@ export default function OpenFile() {
   }
 
   function openFile(encryptOrNot: boolean) {
-    const selectedFiles = window.ipcRenderer.sendSync(
+    const selectedFiles: string[] | undefined = window.ipcRenderer.sendSync(
       'open-file',
       encryptOrNot
     );
 
-    if (selectedFiles !== undefined) {
+    if (typeof selectedFiles !== 'undefined') {
       setFilePaths(JSON.parse(JSON.stringify(selectedFiles)));
       setEncrypt(encryptOrNot);
       handleClickOpen();

@@ -50,8 +50,11 @@ export default function ViewFile() {
   }
 
   function openFile() {
-    const selectedFile = window.ipcRenderer.sendSync('open-file', false);
-    if (selectedFile !== undefined) {
+    const selectedFile: string[] | undefined = window.ipcRenderer.sendSync(
+      'open-file',
+      false
+    );
+    if (typeof selectedFile !== 'undefined') {
       setFilePath(selectedFile[0]);
       setOpenFilesDialog(true);
       viewFile('', selectedFile[0]);
@@ -94,11 +97,11 @@ export default function ViewFile() {
         nextAct={() => {
           handlePasswdClose();
           switch (whatToDo) {
-            case 'add-files':
+            case 'adding files':
               addFiles();
               break;
 
-            case 'decrypt':
+            case 'decryption':
               sendDecrypt();
               break;
 
@@ -106,7 +109,7 @@ export default function ViewFile() {
               break;
           }
         }}
-        contentText="Type the password to use for viewing"
+        contentText={`Type the password to use for ${whatToDo}.`}
       />
       <Dialog open={openFilesDialog} onClose={handleFilesClose} fullScreen>
         <DialogTitle>Files</DialogTitle>
@@ -150,8 +153,10 @@ export default function ViewFile() {
         </DialogContent>
         <DialogActions>
           <Button onClick={goBack}>&lt;</Button>
-          <Button onClick={() => handlePasswdOpen('add-files')}>Add</Button>
-          <Button onClick={() => handlePasswdOpen('decrypt')}>Decrypt</Button>
+          <Button onClick={() => handlePasswdOpen('adding files')}>Add</Button>
+          <Button onClick={() => handlePasswdOpen('decryption')}>
+            Decrypt
+          </Button>
           <Button onClick={handleFilesClose}>Close</Button>
         </DialogActions>
       </Dialog>

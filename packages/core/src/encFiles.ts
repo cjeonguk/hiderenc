@@ -14,7 +14,8 @@ import { homedir } from 'os';
 export default (
   filePaths: string[],
   password: string,
-  resultFilePath = resolve(homedir(), 'encrypted.enc')
+  resultFilePath = resolve(homedir(), 'encrypted.enc'),
+  rootdir = dirname(filePaths[0])
 ) => {
   const salt = crypto.randomBytes(16);
   const iv = crypto.randomBytes(16);
@@ -32,7 +33,6 @@ export default (
     { file: resultFilePath, sync: true, cwd: dirname(resultFilePath) },
     ['.encd']
   );
-  let rootdir = dirname(filePaths[0]);
   for (let i = 1; i < filePaths.length; i++) {
     let latestSlashIndex = 0;
     for (

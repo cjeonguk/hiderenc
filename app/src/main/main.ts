@@ -126,7 +126,6 @@ ipcMain.on('get-file-path', (event) => {
 ipcMain.on(
   'encrypt-or-decrypt',
   (event, passwd: string, encrypt: boolean, filePaths: string[]) => {
-    mainWindow.setProgressBar(2);
     if (encrypt) {
       const resultFilePath = dialog.showSaveDialogSync({
         defaultPath: os.homedir(),
@@ -155,49 +154,51 @@ ipcMain.on(
         defaultPath: os.homedir(),
         properties: ['openDirectory'],
       });
-      const result = decFiles(filePaths[0], passwd, outputPath?.pop());
-      if (result === 1) dialog.showErrorBox('ERROR', 'Wrong password');
-      else if (result === 2) dialog.showErrorBox('ERROR', 'Not encrypted yet');
-      else {
-        const options = {
-          type: 'info',
-          title: 'Information',
-          message: 'Successfully decrypted.',
-        };
-        dialog.showMessageBox(mainWindow, options);
+      if (typeof outputPath !== 'undefined') {
+        switch (decFiles(filePaths[0], passwd, outputPath.pop())) {
+          case 1:
+            dialog.showErrorBox('ERROR', 'Wrong password');
+            break;
+
+          case 2:
+            dialog.showErrorBox('ERROR', 'Not encrypted yet');
+            break;
+
+          default:
+            dialog.showMessageBox(mainWindow, {
+              type: 'info',
+              title: 'Information',
+              message: 'Successfully decrypted.',
+            });
+            break;
+        }
       }
     }
-    mainWindow.setProgressBar(-1);
   }
 );
-
-function isArray<T>(value: T | undefined): value is T {
-  if (value === undefined) return false;
-  return true;
-}
 
 ipcMain.on('add-files', (event, filePath: string, passwd: string) => {
   const selectedFiles = dialog.showOpenDialogSync({
     defaultPath: os.homedir(),
     properties: ['openFile', 'multiSelections'],
   });
-  if (isArray(selectedFiles)) {
+  if (typeof selectedFiles !== 'undefined') {
     const options = {
       type: 'info',
       title: 'Information',
       message: 'Successfully encrypted.',
     };
     switch (addFiles(filePath, passwd, selectedFiles)) {
-      case 0:
-        dialog.showMessageBox(mainWindow, options);
-        break;
-
       case 1:
         dialog.showErrorBox('ERROR', 'Wrong password');
         break;
 
-      default:
+      case 2:
         dialog.showErrorBox('ERROR', 'Unknown error occured.');
+        break;
+
+      default:
+        dialog.showMessageBox(mainWindow, options);
         break;
     }
   }
@@ -212,7 +213,7 @@ ipcMain.on('check-passwd-file-exists', (event) => {
 });
 
 ipcMain.on('write-first-data', (event, passwd: string) => {
-  encFiles([], passwd, path.join(os.homedir(), '.hider.datas'));
+  encFiles([], passwd, path.join(os.homedir(), '.hider.datas'), os.homedir());
 });
 
 ipcMain.on('check-passwd-correct', (event, passwd: string) => {

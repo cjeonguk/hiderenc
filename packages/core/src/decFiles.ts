@@ -70,7 +70,6 @@ export default (
       return 1;
     }
   } catch (err) {
-    console.log(err);
     return 2;
   }
 };
