@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/cjeonguk/hiderenc/compare/v5.0.0...v5.0.1) (2023-03-25)
+
+
+### Bug Fixes
+
+* **bugs:** Fix some bugs ([a4aecac](https://github.com/cjeonguk/hiderenc/commit/a4aecac778f92fea6673e0a3b9e4215592f101ce))
+
 # [5.0.0](https://github.com/cjeonguk/hiderenc/compare/v4.2.0...v5.0.0) (2023-01-14)
 
 
