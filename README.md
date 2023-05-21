@@ -37,3 +37,6 @@
 Hider is distributed under the MIT License.
 
 See [LICENSE](LICENSE) for details.
+
+---
+[Demo video link](https://youtu.be/9PxqX3Ii0SQ)
