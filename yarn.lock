@@ -1111,11 +1111,6 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.18.tgz#8dfb97f0da23c2293e554c5a50d61ef134d7697f"
   integrity sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==
 
-"@types/node@^16.11.26":
-  version "16.11.51"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.51.tgz#bb2114485e6fc1460f630702fb992007d120e928"
-  integrity sha512-h6p1A77pHBDdOcI9y6Wfh9iRGa8lMUZMk2ebHJTNTtRwgbQzgemZow6PW7+Xs7Z0r0IQFY1+iRlcNAkRrf53nA==
-
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
@@ -2950,13 +2945,13 @@ electron-updater@^5.3.0:
     semver "^7.3.5"
     typed-emitter "^2.1.0"
 
-electron@^22.0.0:
-  version "22.0.0"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-22.0.0.tgz#ef84ab9cf23aa3f8c2f42a1e8e000ad7fd941058"
-  integrity sha512-cgRc4wjyM+81A0E8UGv1HNJjL1HBI5cWNh/DUIjzYvoUuiEM0SS0hAH/zaFQ18xOz2ced6Yih8SybpOiOYJhdg==
+electron@^24.4.0:
+  version "24.4.0"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-24.4.0.tgz#48d05561dab6a5835ec1a3a96852797f69824eea"
+  integrity sha512-A9YzLHRUA+HfYVf2daNv0jPXNCWShgcgcTaGntrZRGynQLEhDTbti9Lfmq2tjRKoEgXZ7qj+aJFw+tJZsT/Cfw==
   dependencies:
     "@electron/get" "^2.0.0"
-    "@types/node" "^16.11.26"
+    "@types/node" "^18.11.18"
     extract-zip "^2.0.1"
 
 emoji-regex@^8.0.0:
